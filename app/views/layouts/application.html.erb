@@ -25,7 +25,7 @@
             <li class="nav-item"><%= link_to 'ジャンル一覧',  admin_genres_path, class: "nav-link" %></li>
             <li class="nav-item"><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: "nav-link" %></li>
           <% elsif member_signed_in? %>
-            <li class="nav-item"><%= link_to 'マイページ', members_path(current_member.id), class: "nav-link" %></li>
+            <li class="nav-item"><%= link_to 'マイページ', member_path(current_member.id), class: "nav-link" %></li>
             <li class="nav-item"><%= link_to '会員一覧', members_path, class: "nav-link" %></li>
             <li class="nav-item"><%= link_to '投稿一覧', posts_path, class: "nav-link" %></li>
             <li class="nav-item"><%= link_to '掲示板一覧',  boards_path, class: "nav-link" %></li>
