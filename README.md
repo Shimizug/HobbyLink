@@ -16,15 +16,19 @@
 - 趣味がなく、趣味を探している人。
 - 趣味を人と共有したい人。
 - 自分には金銭的・時間的余裕がないため誰かが趣味を楽しんでいるのを見て疑似体験したい人。
+
 ### 主な利用シーン
 - 時間があるけどやることがなく何をするのか迷っているがないとき。  
 - 人と触れ合いたいとき。  
 - 趣味の興奮を誰かに伝えたいとき。				
 
 ## 設計書
-ER図　https://app.diagrams.net/#G1Uc6OUXWJnLENevDjRiElZ1E7nYdKgCBj  
-テーブル定義書 https://docs.google.com/spreadsheets/d/1pjhoJuz8zGr7jws0u0u8aJtqaUFRnN1VwQP4qf4yj28/edit#gid=1373217982  
-アプリケーション詳細設定 https://docs.google.com/spreadsheets/d/1h-Bjh_XuxlskbTlS5vTVAERpcoxVPdlme3EWhCmgR_Q/edit#gid=2062805743  
+- 画面遷移図　https://app.diagrams.net/#G1cJoi-mVilnwZ1gBSbAm96H74TWLCF58c    　　
+- ER図　https://app.diagrams.net/#G1Uc6OUXWJnLENevDjRiElZ1E7nYdKgCBj  
+- ワイヤーフレーム（管理人側）https://app.diagrams.net/#G18PjIzhR_wf0MbdMVLXhxvnq04EKAEp8S  
+- ワイヤーフレーム（会員側）https://app.diagrams.net/#G1yVsYyzJ2Te0XaND36ojT5goJ4lMK3xWw  
+- テーブル定義書 https://docs.google.com/spreadsheets/d/1pjhoJuz8zGr7jws0u0u8aJtqaUFRnN1VwQP4qf4yj28/edit#gid=1373217982  
+- アプリケーション詳細設定 https://docs.google.com/spreadsheets/d/1h-Bjh_XuxlskbTlS5vTVAERpcoxVPdlme3EWhCmgR_Q/edit#gid=2062805743   
 
 ## 開発環境
 - OS：Linux(CentOS)
@@ -34,4 +38,4 @@ ER図　https://app.diagrams.net/#G1Uc6OUXWJnLENevDjRiElZ1E7nYdKgCBj
 - IDE：Cloud9
 
 ## 使用素材
-- 仕様検討中です。
+- いらすとや  
