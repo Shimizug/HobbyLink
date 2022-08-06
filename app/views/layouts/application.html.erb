@@ -13,38 +13,36 @@
   <body>
     <header class="<%= (admin_signed_in? ? "admin_header" : "" ) %>">
       <div class="header-content">
-      <%= link_to 'HobbyLink', (admin_signed_in? ? admin_top_path : root_path ) %>
-        <ul class="flex">
+      <%= link_to "HobbyLink", (admin_signed_in? ? admin_top_path : root_path ), class: "fs-2" %>
+      <% if member_signed_in? %>
+        <p class="nav-item">ようこそ、<%= current_member.nickname %>さん!</p>
+      <% end %>
+        <ul class="nav justify-content-between">
           <% if admin_signed_in? %>
-            <li><%= link_to 'home',   %></li>
-            
-            <li><%= link_to '会員一覧',   %></li>
-            <li><%= link_to '注文履歴一覧',  admin_orders_path %></li>
-            <li><%= link_to 'ジャンル一覧',  admin_genres_path %></li>
-            <li><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %></li>
-          <% elsif customer_signed_in? %>
-            <p>ようこそ、<%= current_customer.nickname %>さん!</p>
-            <li><%= link_to 'マイページ', mypage_path %></li>
-            <li><%= link_to '商品一覧', items_path %></li>
-            <li><%= link_to 'カート', cart_items_path %></li>
-            <li><%= link_to 'ログアウト', destroy_customer_session_path, method: :delete %></li>
+            <li class="nav-item"><%= link_to '会員一覧',  admin_members_path, class: "nav-link" %></li>
+            <li class="nav-item"><%= link_to '投稿一覧',  admin_posts_path, class: "nav-link" %></li>
+            <li class="nav-item"><%= link_to '掲示板一覧',  admin_boards_path, class: "nav-link" %></li>
+            <li class="nav-item"><%= link_to 'ジャンル一覧',  admin_genres_path, class: "nav-link" %></li>
+            <li class="nav-item"><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: "nav-link" %></li>
+          <% elsif member_signed_in? %>
+            <li class="nav-item"><%= link_to 'マイページ', members_path(current_member.id), class: "nav-link" %></li>
+            <li class="nav-item"><%= link_to '会員一覧', members_path, class: "nav-link" %></li>
+            <li class="nav-item"><%= link_to '投稿一覧', posts_path, class: "nav-link" %></li>
+            <li class="nav-item"><%= link_to '掲示板一覧',  boards_path, class: "nav-link" %></li>
+            <li class="nav-item"><%= link_to 'ログアウト', destroy_member_session_path, method: :delete, class: "nav-link" %></li>
           <% else %>
-            <li><%= link_to '商品一覧', items_path %></li>
-            <li><%= link_to '新規登録', new_customer_registration_path %></li>
-            <li><%= link_to 'ログイン', new_customer_session_path %></li>
+            <li class="nav-item"><%= link_to 'about', about_path, class: "nav-link" %></li>
+            <li class="nav-item"><%= link_to '会員一覧', members_path, class: "nav-link" %></li>
+            <li class="nav-item"><%= link_to '投稿一覧', posts_path, class: "nav-link" %></li>
+            <li class="nav-item"><%= link_to '掲示板一覧',  boards_path, class: "nav-link" %></li>
+            <li class="nav-item"><%= link_to '新規登録', new_member_registration_path, class: "nav-link" %></li>
+            <li class="nav-item"><%= link_to 'ログイン', new_member_session_path, class: "nav-link" %></li>
           <% end %>
         </ul>
-        <% end %>
-        <form class="form-inline mr-5">
-         <input type="search" class="form-control mr-sm-2" placeholder="検索..." aria-label="検索...">
-         <button type="submit" class="btn btn-outline-secondary my-2 my-sm-0">検索</button>
-      </form>
-      </div>
-    </header>
 
     <main>
     <%= yield %>
     </main>
-    
+     <footer>Copyright © Shimizug. All Rights Reserved.</footer>
   </body>
 </html>

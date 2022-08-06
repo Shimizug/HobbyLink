@@ -1,59 +1,57 @@
 Rails.application.routes.draw do
-  namespace :admin do
-    get 'boards/index'
-    get 'boards/new'
-    get 'boards/show'
-  end
-  namespace :admin do
-    get 'members/index'
-    get 'members/show'
-    get 'members/edit'
-  end
-  namespace :admin do
-    get 'genres/index'
-    get 'genres/edit'
-  end
-  namespace :admin do
-    get 'posts/index'
-    get 'posts/show'
-  end
-  namespace :admin do
-    get 'homes/top'
-  end
-  namespace :public do
-    get 'relationships/followings'
-    get 'relationships/followers'
-  end
-  namespace :public do
-    get 'boards/index'
-    get 'boards/show'
-    get 'boards/edit'
-    get 'boards/new'
-  end
-  namespace :public do
-    get 'posts/index'
-    get 'posts/show'
-    get 'posts/edit'
-    get 'posts/new'
-  end
-  namespace :public do
-    get 'members/index'
-    get 'members/show'
-    get 'members/edit'
-    get 'members/unsubscribe'
-  end
-  namespace :public do
-    get 'homes/top'
-    get 'homes/about'
-  end
-# 会員用
-devise_for :members,skip: [:passwords], controllers: {
-  registrations: "public/registrations",
-  sessions: 'public/sessions'
-}
 
-# 管理者用
-devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
-  sessions: "admin/sessions"
-}
+  # 管理者用
+  devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
+    sessions: "admin/sessions"
+  }
+  
+  namespace :admin do
+    get 'top' => 'homes#top', as: 'top'
+    get 'search' => 'homes#search', as: 'search'
+    resources :members, only: [:index, :show, :edit, :update]
+    resources :posts, only: [:index, :show, :destroy]
+    resources :genres, only: [:index, :create, :edit, :update, :destroy]
+    resources :boards, except: [:edit] do
+      resources :board_comments, only: [:create, :destroy]
+    end
+  end
+  
+  # 会員用
+  devise_for :members,skip: [:passwords], controllers: {
+    registrations: "public/registrations",
+    sessions: 'public/sessions'
+  }
+  
+  
+  scope module: :public do
+    root 'homes#top'
+    get 'about' => 'homes#about', as: 'about'
+    
+    
+    # get 'members/lists' => 'members#index', as: 'lists'
+    # get 'members/detail' => 'members#show', as: 'detail'
+    get 'members/information/edit' => 'members#edit', as: 'edit_information'
+    patch 'members/information' => 'members#update', as: 'update_information'
+    get 'members/unsubscribe' => 'members#unsubscribe', as: 'confirm_unsubscribe'
+    put 'members/information' => 'members#update'
+    patch 'members/withdraw' => 'members#withdraw', as: 'withdraw_customer'
+    resources :members, only: [:index, :show] do
+      resource :relationships, only: [:create, :destroy]
+      get 'followings' => 'relationships#followings', as: 'followings'
+      get 'followers' => 'relationships#followers', as: 'followers'
+    end
+      
+    
+    resources :posts do
+      resources :post_comments, only: [:create, :update, :destroy]
+      resources :favorites, only: [:create, :destroy]
+    end
+    resources :boards, except: [:edit, :update] do
+      resources :board_comments, only: [:create, :update, :destroy]
+    end
+    
+    
+  end
+
 end
+
