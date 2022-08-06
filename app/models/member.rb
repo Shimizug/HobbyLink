@@ -8,6 +8,7 @@ class Member < ApplicationRecord
   has_many :boards, dependent: :destroy
   has_many :board_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  has_one_attached :profile_image
 
 
   validates :last_name, presence: true
@@ -16,11 +17,9 @@ class Member < ApplicationRecord
   validates :first_name_kana, presence: true, format: { with: /\A[ァ-ヶー－]+\z/ }
   validates :nickname, presence: true
   validates :introduction, length: { maximum: 30 }
+  
 
 
-
-
-  has_one_attached :image
 
   def full_name
     first_name + " " + last_name
