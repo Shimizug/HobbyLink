@@ -1,2 +1,31 @@
-<h1>Public::Homes#about</h1>
-<p>Find me in app/views/public/homes/about.html.erb</p>
+  <div class="container">
+    <div class="row pt-5">
+
+      <div class="content">
+        <div class="card" style="width:align-self-center;">
+          <%= image_tag "noimage_icon", class:"card-img"%>
+            <div class="card-img-overlay d-flex align-posts-center justify-content-center">
+              <h2 class="bg-light p-4">
+                Welcome to Hobby Link!!
+              </h4>
+            </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row">
+      <h3><strong>新着投稿</strong></h3>
+      <div class="posts d-inline-block mx-3 my-5  text-center">
+      <% @new_posts.reverse_each do |post| %>
+        <%= link_to post_path(post.id) do %>
+          <p><%= post.title %></p><br>
+          <% if post.image.attached? %>
+            <%= image_tag post.image, size: "160x160" %>
+          <% else %>
+            <%= image_tag 'noimage_icon', size: "160x160" %>
+          <% end %><br>
+        <% end %>
+      </div>
+      <% end %>
+    </div>
