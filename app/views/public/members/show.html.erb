@@ -1,2 +1,29 @@
-<h1>Public::Members#show</h1>
-<p>Find me in app/views/public/members/show.html.erb</p>
+<div class='container px-5 px-sm-0'>
+    <div class='row'>
+        <div class='col-md-8 d-inline'>
+            <% if current_member != @member %>
+                <h2 class="d-inline-block my-5">会員詳細　</h2>
+                <%= render "public/relationships/btn", member: @member %>
+            <% else %>
+                <h2 class="d-inline-block my-5">マイページ　</h2>
+                <%= link_to "編集画面へ",  edit_information_path(current_member.id), class: "btn btn-primary" %>
+            <% end %>
+            <%= render 'show', member: @member %>
+        </div>
+        <div class='col-md-3 offset-md-1 d-inline-block mt-5'>
+            <h3>最新の投稿</h3>
+            <% @new_posts.each do |post| %>
+                <%= post.title %>
+                <% if post.image.attached? %>
+                    <%= image_tag post.image, size: '80x80' %>
+                <% else %>
+                    <%= image_tag 'noimage_icon', size: "80x80" %>
+                <% end %>
+                <%= @member.nickname %>
+                <%= post.created_at.strftime('%Y/%m/%d') %>
+            <% end %>
+        </div>
+    </div>
+</div>
+
+

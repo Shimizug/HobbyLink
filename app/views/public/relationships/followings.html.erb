@@ -1,2 +1,6 @@
-<h1>Public::Relationships#followings</h1>
-<p>Find me in app/views/public/relationships/followings.html.erb</p>
+<h2>フォロー一覧</h2>
+<% if @members.exists? %>
+  <%= render 'public/members/index', members: @members %>
+<% else %>
+  <p>ユーザーはいません</p>
+<% end %>

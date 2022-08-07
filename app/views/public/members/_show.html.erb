@@ -1,0 +1,45 @@
+<table class='table table-bordered border-primary '>
+  <tr>
+    <th>会員画像</th>
+    <th>
+      <% if member.profile_image.attached? %>
+        <%= image_tag member.profile_image, size: '80x80' %>
+      <% else %>
+        <%= image_tag 'noimage_icon', size: "80x80" %>
+      <% end %>
+    </th>
+  </tr>
+  <tr>
+	  <th>会員名</th>
+	  <th><%= member.full_name %></th>
+  </tr>
+  <tr>
+	  <th>会員名（カナ）</th>
+	  <th><%= member.full_name_kana %></th>
+  </tr>
+  <tr>
+	  <th>会員名</th>
+	  <th><%= member.nickname%></th>
+  </tr>
+  <tr>
+	  <th>自己紹介文</th>
+	  <th><%= member.introduction %></th>
+  </tr>
+  <tr>
+	  <th>メールアドレス</th>
+	  <th><%= member.email %></th>
+  </tr>
+  <tr>
+	  <th>趣味ジャンル</th>
+	  <th><%= member.genre_id %></th>
+  </tr>
+  <tr>
+    <th>フォロー一覧</th>
+    <th><%= link_to member.followings.count, member_followings_path(member) %></th>
+  </tr>
+  <tr>
+    <th>フォロワー一覧</th>
+    <th><%= link_to member.followers.count, member_followers_path(member) %></th>
+  </tr>
+</table>
+

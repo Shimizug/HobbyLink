@@ -1,0 +1,38 @@
+<table class='table table-bordered border-primary'>
+  <thead>
+    <tr>
+      <th>会員画像</th>
+      <th>会員ニックネーム</th>
+      <th colspan="4"></th>
+      </tr>
+  </thead>
+  <tbody>
+    <% members.each do |member| %>
+      <tr>
+        <td rowspan="2">
+          <% if member.profile_image.attached? %>
+            <%= image_tag member.profile_image, size: '80x80' %>
+          <% else %>
+            <%= image_tag 'noimage_icon', size: "80x80" %>
+          <% end %>
+        </td>
+        <td><%= member.nickname %></td>
+        <td><%= "フォロー数：#{member.followings.count}" %></td>
+        <td><%= "フォロワー数：#{member.followers.count}" %></td>
+        <td><%= "投稿数：#{member.posts.count}" %></td>
+        <td>
+          <% unless member.id == current_member.id %>
+            <%= render "public/relationships/btn", member: member %></td>
+          <% else %>
+            <%= link_to '編集画面へ',  edit_information_path(current_member.id), class: "btn btn-primary"  %>
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="4"><%= "自己紹介文：#{member.introduction}" %></td>
+        <td><%= link_to  '詳細画面へ', member_path(member.id), class: "btn btn-primary" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= paginate members %>

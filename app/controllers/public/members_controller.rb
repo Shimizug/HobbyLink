@@ -3,12 +3,11 @@ class Public::MembersController < ApplicationController
 
 
   def index
-    @members = Member.page(params[:page]).per(5)
+    @members = Member.all.page(params[:page]).per(4)
   end
 
   def show
     @member = Member.find(params[:id])
-    @posts = @member.posts.page(params[:page]).per(3)
     @new_posts = @member.posts.last(4)
   end
 
