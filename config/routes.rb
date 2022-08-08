@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     get 'search' => 'homes#search', as: 'search'
     resources :members, only: [:index, :show, :edit, :update]
     resources :posts, only: [:index, :show, :destroy]
-    resources :genres, only: [:index, :create, :edit, :update, :destroy]
+    resources :genres, only: [:index, :create, :edit, :update]
     resources :boards, except: [:edit] do
       resources :board_comments, only: [:create, :destroy]
     end
