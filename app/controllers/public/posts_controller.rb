@@ -8,7 +8,7 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.page(params[:page]).per(5)
+    @posts = Post.page(params[:page]).per(4)
   end
 
   def create
@@ -27,7 +27,7 @@ class Public::PostsController < ApplicationController
   end
   
   def edit
-    @genres = Genre.
+    @genres = Genre.all
   end
 
   def update

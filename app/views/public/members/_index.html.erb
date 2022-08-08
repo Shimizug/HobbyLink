@@ -3,6 +3,7 @@
     <tr>
       <th>会員画像</th>
       <th>会員ニックネーム</th>
+      <th>趣味ステータス</th>
       <th colspan="4"></th>
       </tr>
   </thead>
@@ -11,7 +12,7 @@
       <tr>
         <td rowspan="2"><%= image_tag member.get_profile_image, size:"80x80" %></td>
         <td><%= member.nickname %></td>
-        <td><%= member.hobby_states_i18n %</td>
+        <td><%= member.hobby_state_i18n %></td>
         <td><%= "フォロー数：#{member.followings.count}" %></td>
         <td><%= "フォロワー数：#{member.followers.count}" %></td>
         <td><%= "投稿数：#{member.posts.count}" %></td>
@@ -24,7 +25,7 @@
         </td>
       </tr>
       <tr>
-        <td colspan="4"><%= "自己紹介文：#{member.introduction}" %></td>
+        <td colspan="5"><%= "自己紹介文：#{member.introduction}" %></td>
         <td><%= link_to  '詳細画面へ', member_path(member.id), class: "btn btn-primary" %></td>
       </tr>
     <% end %>
