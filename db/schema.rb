@@ -88,14 +88,14 @@ ActiveRecord::Schema.define(version: 2022_08_03_125514) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer "genre_id", default: 1, null: false
     t.string "first_name", null: false
     t.string "last_name", null: false
     t.string "first_name_kana", null: false
     t.string "last_name_kana", null: false
     t.boolean "is_deleted", default: false, null: false
+    t.integer "hobby_state", default: 0, null: false
     t.string "nickname", null: false
-    t.text "introduction"
+    t.text "introduction", default: "よろしくお願いします!", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_members_on_email", unique: true

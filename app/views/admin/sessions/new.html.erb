@@ -1,27 +1,33 @@
-<div class="col-md-8 px-5 px-sm-0 mx-auto">
-  <h1 class="mt-4">管理者ログイン</h1>
-
-  <%= form_with model: @admin, url: session_path(resource_name) do |f| %>
-
-  <div class="form-row mt-3">
-    <%= f.label :メールアドレス, class: 'col-sm-2 col-form-label' %>
-     <div class="col">
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control exampleInputEmail1' %>
-    </div>
-  </div>
-
-  <div class="form-row mt-4">
-    <%= f.label :パスワード, class: 'col-sm-2 col-form-label' %>
+<div class="container">
+  <div class="row">
     <div class="col">
-    <%= f.password_field :password, autocomplete: "current-password", class: 'form-control exampleInputEmail1' %>
+    <h2>管理者ログイン</h2>
+
+    <%= form_with model: @admin, url: session_path(resource_name), local: true do |f| %>
+      <table class="table member_info member_form">
+        <thead>
+          <th></th>
+          <th></th>
+          <th></th>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= f.label :email, "メールアドレス", class: "form-label" %></td>
+            <td colspan="2"><%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :password, "パスワード", class: "form-label" %></td>
+            <td colspan="2"><%= f.password_field :password, autocomplete: "current-password", class: "form-control" %></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td colspan="2"> <%= f.submit "ログイン", class: "btn btn-primary" %></td>
+          </tr>
+        </tbody>
+      </table>
+    <% end %>
     </div>
   </div>
-
-  <div class="mt-4 mb-4 text-center">
-    <%= f.submit "ログイン", class: 'btn btn-primary col-sm-3' %>
-  </div>
-<% end %>
-
-
-<%= render "admin/shared/links" %>
 </div>
+
+

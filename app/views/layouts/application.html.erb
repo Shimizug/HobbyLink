@@ -37,6 +37,7 @@
             <li class="nav-item"><%= link_to '掲示板一覧',  boards_path, class: "nav-link" %></li>
             <li class="nav-item"><%= link_to '新規登録', new_member_registration_path, class: "nav-link" %></li>
             <li class="nav-item"><%= link_to 'ログイン', new_member_session_path, class: "nav-link" %></li>
+            <li class="nav-item"><%= link_to 'ゲストログイン（閲覧用)', guest_sign_in_path, method: :post, class: "nav-link" %></li>
           <% end %>
         </ul>
 

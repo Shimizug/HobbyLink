@@ -21,20 +21,22 @@ Rails.application.routes.draw do
     registrations: "public/registrations",
     sessions: 'public/sessions'
   }
+  
+  #ゲストログイン用
+  devise_scope :member do
+    post 'guest_sign_in', to: 'public/sessions#guest_sign_in'
+  end
 
 
   scope module: :public do
     root 'homes#top'
     get 'about' => 'homes#about', as: 'about'
 
-
-    # get 'members/lists' => 'members#index', as: 'lists'
-    # get 'members/detail' => 'members#show', as: 'detail'
     get 'members/information/:id/edit' => 'members#edit', as: 'edit_information'
     patch 'members/information/:id' => 'members#update', as: 'update_information'
     get 'members/unsubscribe/:id' => 'members#unsubscribe', as: 'confirm_unsubscribe'
     put 'members/information/:id' => 'members#update'
-    patch 'members/withdraw/:id' => 'members#withdraw', as: 'withdraw_customer'
+    patch 'members/withdraw/:id' => 'members#withdraw', as: 'withdraw'
     resources :members, only: [:index, :show] do
       resource :relationships, only: [:create, :destroy]
       get 'followings' => 'relationships#followings', as: 'followings'

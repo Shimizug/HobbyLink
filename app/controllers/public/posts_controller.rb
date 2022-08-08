@@ -1,4 +1,5 @@
 class Public::PostsController < ApplicationController
+  before_action :authenticate_member!
   before_action :ensure_correct_member, only: [:edit, :update, :destroy]
 
   def show
@@ -7,7 +8,6 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @genres = Genre.all
     @posts = Post.page(params[:page]).per(5)
   end
 
@@ -27,6 +27,7 @@ class Public::PostsController < ApplicationController
   end
   
   def edit
+    @genres = Genre.
   end
 
   def update

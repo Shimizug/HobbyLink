@@ -1,13 +1,7 @@
 <table class='table table-bordered border-primary '>
   <tr>
     <th>会員画像</th>
-    <th>
-      <% if member.profile_image.attached? %>
-        <%= image_tag member.profile_image, size: '80x80' %>
-      <% else %>
-        <%= image_tag 'noimage_icon', size: "80x80" %>
-      <% end %>
-    </th>
+    <th><%= image_tag member.get_profile_image, size:"80x80" %></th>
   </tr>
   <tr>
 	  <th>会員名</th>
@@ -30,8 +24,8 @@
 	  <th><%= member.email %></th>
   </tr>
   <tr>
-	  <th>趣味ジャンル</th>
-	  <th><%= member.genre_id %></th>
+	  <th>趣味ステータス</th>
+	  <th><<%= member.hobby_states_i18n %></th>
   </tr>
   <tr>
     <th>フォロー一覧</th>

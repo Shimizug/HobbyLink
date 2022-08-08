@@ -1,39 +1,45 @@
 <div class="container">
-  <div class='row'>
-    <div class="col-md-10 px-5 px-sm-0 mx-auto mt-4">
-      
-      <h1>ログイン</h1>
-    
-      <div class="mt-4">
-        <h2>会員の方はこちらからログイン</h2>
-    
-        <%= form_with model: @member, url: session_path(resource_name) do |f| %>
-    
-            <div class="form-row mt-5">
-              <%= f.label :メールアドレス, class: 'col-sm-2 col-form-label' %>
-              <div class="col">
-              <%= f.email_field :email, autofocus: true, autocomplete: "email", :placeholder => "sample@example.com", class: 'form-control exampleInputEmail1' %>
-              </div>
-            </div>
-    
-            <div class="form-row mt-4">
-              <%= f.label :パスワード, class: 'col-sm-2 col-form-label' %>
-              <div class="col">
-              <%= f.password_field :password, autocomplete: "current-password", class: 'form-control exampleInputPassword1' %>
-              </div>
-            </div>
-    
-            <div class="mt-4 mb-4">
-              <%= f.submit "ログイン", class: 'btn btn-primary' %>
-            </div>
-          <% end %>
-      </div>
-    
-      <h2>会員登録がお済みでない方</h2>
-      <p><%= link_to "こちら", new_member_registration_path %>から新規登録を行ってください。</p>
-      <h2>今回はゲストログインという方</h2>
-      <p><%= link_to "こちら", new_member_registration_path %>からゲストログインして下さい。</p>
+  <div class="row">
+    <div class="col">
+      <h2>ログイン</h2>
+      <% if flash[:danger] %>
+        <p class="text-red"><%= flash[:danger] %></p>
+      <% end %>
+
+       <%= form_with model: @member, url: session_path(resource_name), local: true do |f| %>
+        <table class="table member_info member_form">
+          <thead>
+            <th></th>
+            <th></th>
+            <th></th>
+          </thead>
+          <tbody>
+            <tr>
+              <td><%= f.label :email, "メールアドレス", class: "form-label" %></td>
+              <td colspan="2"><%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %></td>
+            </tr>
+            <tr>
+              <td><%= f.label :password, "パスワード", class: "form-label" %></td>
+              <td colspan="2"><%= f.password_field :password, autocomplete: "current-password", class: "form-control" %></td>
+              <% if devise_mapping.rememberable? %>
+                <div class="field">
+                  <%= f.check_box :remember_me %>
+                  <%= f.label :remember_me %>
+                </div>
+              <% end %>
+            </tr>
+            <tr>
+              <td></td>
+              <td colspan="2"> <%= f.submit "ログイン", class: "btn btn-primary" %></td>
+            </tr>
+          </tbody>
+        </table>
+      <% end %>
+      <h2 class="section-title">登録がお済みでない方</h2>
+      <p><%= link_to "こちら", new_member_registration_path, class: "underline" %>から新規登録を行なってください。</p>
+      <h2 class="section-title">今回はゲストログインという方</h2>
+      <p><%= link_to "こちら", guest_sign_in_path, method: :post, class: "underline" %>からゲストログインして下さい。</p>
     </div>
   </div>
 </div>
-<%= render "public/shared/links" %>
+

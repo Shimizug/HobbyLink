@@ -1,4 +1,5 @@
 class Public::MembersController < ApplicationController
+  before_action :authenticate_member!
   before_action :ensure_correct_member, only: [:edit, :update, :unsubscribe, :withdraw]
 
 
@@ -36,7 +37,7 @@ class Public::MembersController < ApplicationController
   private
 
   def member_params
-    params.require(:member).permit(:email, :first_name, :last_name, :first_name_kana, :last_name_kana, :nickname, :genre_id, :introduction, :profile_image)
+    params.require(:member).permit(:email, :first_name, :last_name, :first_name_kana, :last_name_kana, :nickname, :genre_id, :introduction, :profile_image, :is_deleted)
   end
 
   def ensure_correct_member
