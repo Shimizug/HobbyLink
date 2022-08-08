@@ -4,8 +4,8 @@ class Post < ApplicationRecord
   has_many :post_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   
-  validates :title,presence:true
-  validates :body,presence:true,length:{maximum:200}
+  validates :title,presence:true,length: { in: 1..30 } 
+  validates :body,presence:true,length: { in: 1..100 } 
   
   # 画像の投稿
   def get_image

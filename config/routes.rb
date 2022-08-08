@@ -46,7 +46,7 @@ Rails.application.routes.draw do
 
     resources :posts do
       resources :post_comments, only: [:create, :update, :destroy]
-      resources :favorites, only: [:create, :destroy]
+      resource :favorites, only: [:create, :destroy]
     end
     resources :boards, except: [:edit, :update] do
       resources :board_comments, only: [:create, :update, :destroy]

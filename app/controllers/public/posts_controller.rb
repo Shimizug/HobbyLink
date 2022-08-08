@@ -8,7 +8,7 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.page(params[:page]).per(4)
+    @posts = Post.all.page(params[:page]).per(4)
   end
 
   def create
@@ -17,15 +17,15 @@ class Public::PostsController < ApplicationController
     if @post.save
       redirect_to post_path(@post), notice: "You have created post successfully."
     else
-      @posts = Post.all
-      render 'index'
+      redirect_to request.referer
     end
   end
-  
+
   def new
     @post = Post.new
+    @genres = Genre.all
   end
-  
+
   def edit
     @genres = Genre.all
   end
@@ -34,7 +34,7 @@ class Public::PostsController < ApplicationController
     if @post.update(post_params)
       redirect_to post_path(@post), notice: "You have updated post successfully."
     else
-      render "edit"
+      redirect_to request.referer
     end
   end
 
@@ -46,7 +46,7 @@ class Public::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :body)
+    params.require(:post).permit(:title, :body, :image, :genre_id)
   end
 
   def ensure_correct_member

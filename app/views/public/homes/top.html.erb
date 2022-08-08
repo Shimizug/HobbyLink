@@ -1,31 +1,59 @@
-   <div class="container">
-    <div class="row pt-5">
-
-      <div class="content">
-        <div class="card" style="width:align-self-center;">
-          <%= image_tag "noimage_icon", class:"card-img"%>
-            <div class="card-img-overlay d-flex align-posts-center justify-content-center">
-              <h2 class="bg-light p-4">
-                Welcome to Hobby Link!!
-              </h4>
-            </div>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="row">
-      <h3><strong>新着投稿</strong></h3>
-      <div class="posts d-inline-block mx-3 my-5  text-center">
-      <% @new_posts.reverse_each do |post| %>
-        <%= link_to post_path(post.id) do %>
-          <p><%= post.title %></p><br>
-          <% if post.image.attached? %>
-            <%= image_tag post.image, size: "160x160" %>
-          <% else %>
-            <%= image_tag 'noimage_icon', size: "160x160" %>
-          <% end %><br>
+<div class="container">
+  <div class="row">
+    <div class="col-2">
+      <% @random_posts.each do |post| %>
+        <%= link_to post_path(post.id), class: "text-decoration-none" do %>
+          <div class="card-header text-dark text-center">
+            <%= post.title%>
+          </div>
+          <div class="card-body text-dark mb-2">
+            <%= image_tag post.get_image, size:"60x60", class: "card-img" %>
+            <p class="card-text text-center"><%= post.member.nickname %></p>
+          </div>
         <% end %>
-      </div>
       <% end %>
     </div>
+    <div class="offset-1 col-6 justify-content-center d-flex flex-column align-items-center">
+      <h1 class="text-nowrap">Welcome to Hobby Link!!</h1>
+      <p class="text-center">趣味ある人も、</p>
+      <p class="text-center">趣味がない人も、</p>
+      <p class="text-center">もっと余暇を楽しみましょう!!</p>
+    </div>
+    <div class="col-2 offset-1">
+      <% @random_posts.each do |post| %>
+        <%= link_to post_path(post.id), class: "text-decoration-none" do %>
+          <div class="card-header text-dark text-center">
+            <%= post.title%>
+          </div>
+          <div class="card-body text-dark mb-2">
+            <%= image_tag post.get_image, size:"60x60", class: "card-img" %>
+            <p class="card-text text-center"><%= post.member.nickname %></p>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <h3>新規投稿</h3>
+  </div>
+  <div class="row card-group justify-content-between">
+    <% @new_posts.reverse_each do |post| %>
+      <%= link_to post_path(post.id) do %>
+        <div class="card h-100 mx-3">
+          <div class="card-header text-dark text-center">
+            <%= post.title %>
+          </div>
+          <div class="card-body mb-2 text-dark">
+            <%= image_tag post.get_image, size:"60x60", class: "card-img" %>
+            <p class="card-text text-center"><%= post.member.nickname %></p>
+            <p class="card-text text-center"><%= post.created_at.strftime('%Y/%m/%d') %></p>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+
+
+

@@ -20,7 +20,7 @@
           <% unless member.id == current_member.id %>
             <%= render "public/relationships/btn", member: member %></td>
           <% else %>
-            <%= link_to '編集画面へ',  edit_information_path(current_member.id), class: "btn btn-primary"  %>
+            <%= link_to '編集画面へ',  edit_information_path(current_member.id), class: "btn btn-secondary"  %>
           <% end %>
         </td>
       </tr>
@@ -31,4 +31,8 @@
     <% end %>
   </tbody>
 </table>
-<%= paginate members %>
+<div class="offset-5 mb-5">
+  <%= paginate members %>
+</div>
+
+

@@ -1,2 +1,49 @@
-<h1>Public::Posts#show</h1>
-<p>Find me in app/views/public/posts/show.html.erb</p>
+<div class='container px-5 px-sm-0'>
+  <div class="row">
+    <h2>投稿詳細</h2>
+  </div>
+  <div class="row">
+    <ul class="list-inline">
+      <li class="list-inline-item"><%= @post.member.nickname %></li>
+      <li class="list-inline-item"><%= @post.genre.name %></li>
+      <li class="list-inline-item"><%= @post.created_at.strftime('%Y/%m/%d') %></li>
+      <% if current_member.id == @post.member.id %>
+      <div class="text-warning d-inline">
+        <i class="fas fa-star" aria-hidden="true"></i>
+        <%= "#{@post.favorites.count} いいね" %>
+      </div>
+      <% else %>
+        <li class="list-inline-item"><%= render "public/favorites/btn", post: @post %></li>
+      <% end %>
+      <li class="list-inline-item"><%= "コメント数：#{@post.post_comments.count}" %></li>
+    </ul>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <table class="table table-bordered">
+        <tr>
+          <th>投稿画像</th>
+          <th class="text-center"><%= image_tag @post.get_image, size:"80x80" %></th>
+        </tr>
+        <tr>
+          <th>投稿タイトル</th>
+          <th><%= @post.title %></th>
+        </tr>
+        <tr>
+          <th>投稿本文</th>
+          <th><%= @post.body %></th>
+        </tr>
+        <% if @post.member == current_member %>
+          <tr>
+            <th><%= link_to '編集画面へ', edit_post_path(@post), class: "btn btn-secondary" %></th>
+            <th><%= link_to '削除する', post_path(@post), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></th>
+          <% end %>
+        </tr>
+      </table>
+    </div>
+    <div class="col-md-5 offset-md-1">
+      <%= render "public/post_comments/index", post: @post %>
+      <%= render "public/post_comments/form", post: @post, post_comment: @post_comment %>
+    </div>
+  </div>
+</div>

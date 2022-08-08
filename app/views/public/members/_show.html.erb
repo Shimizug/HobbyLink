@@ -1,7 +1,7 @@
 <table class='table table-bordered border-primary '>
   <tr>
     <th>会員画像</th>
-    <th><%= image_tag member.get_profile_image, size:"80x80" %></th>
+    <th class="text-center"><%= image_tag member.get_profile_image, size:"80x80" %></th>
   </tr>
   <tr>
 	  <th>会員名</th>
@@ -25,7 +25,7 @@
   </tr>
   <tr>
 	  <th>趣味ステータス</th>
-	  <th><<%= member.hobby_states_i18n %></th>
+	  <th><<%= member.hobby_state_i18n %></th>
   </tr>
   <tr>
     <th>フォロー一覧</th>
