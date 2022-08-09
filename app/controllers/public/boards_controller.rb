@@ -4,7 +4,7 @@ class Public::BoardsController < ApplicationController
   def show
     @board = Board.find(params[:id])
     @board_comment = BoardComment.new
-    @board_comments = BoardComment.all.page(params[:page]).per(25)
+    @board_comments = BoardComment.all.page(params[:page]).per(10)
   end
 
   def index

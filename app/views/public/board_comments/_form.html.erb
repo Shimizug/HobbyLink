@@ -1,4 +1,12 @@
 <%= form_with(model:[board, board_comment], local: true) do |f| %>
-  <%= f.text_area :comment, rows:'5', :placeholder =>  "1文字以上、80文字以下で入力してください。", class: "form-control" %>
-  <%= f.submit "送信する", class: "btn btn-success float-right" %>
+   <table class="table table-borderless">
+    <thead>
+      <tr>
+        <th><%= f.text_area :comment,  :placeholder =>  "1文字以上、300文字以下で入力してください。", class: "form-control" %></th>
+      </tr>
+      <tr>
+        <th><%= f.submit "送信する", class: "btn btn-success float-right" %></th>
+      </tr>
+    </thead>
+  </table>
 <% end %>
