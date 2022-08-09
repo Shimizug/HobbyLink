@@ -9,6 +9,7 @@ class Member < ApplicationRecord
 
   has_many :boards, dependent: :destroy
   has_many :board_comments, dependent: :destroy
+  
   has_many :favorites, dependent: :destroy
 
   # 自分がフォローする側の関係性
@@ -40,10 +41,10 @@ class Member < ApplicationRecord
   def self.guest
     find_or_create_by!(email: 'guest@example.com') do |member|
       member.password = SecureRandom.urlsafe_base64
-      member.first_name = "ゲスト"
-      member.last_name = "ログイン"
-      member.first_name_kana ="ゲスト"
-      member.last_name_kana = "ログイン"
+      member.first_name = "今回"
+      member.last_name = "仮登録"
+      member.first_name_kana ="コンカイ"
+      member.last_name_kana = "カリトウロク"
       member.nickname = 'ゲスト'
     end
   end

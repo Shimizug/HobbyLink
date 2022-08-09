@@ -21,7 +21,7 @@ Rails.application.routes.draw do
     registrations: "public/registrations",
     sessions: 'public/sessions'
   }
-  
+
   #ゲストログイン用
   devise_scope :member do
     post 'guest_sign_in', to: 'public/sessions#guest_sign_in'
@@ -37,8 +37,10 @@ Rails.application.routes.draw do
     get 'members/unsubscribe/:id' => 'members#unsubscribe', as: 'confirm_unsubscribe'
     put 'members/information/:id' => 'members#update'
     patch 'members/withdraw/:id' => 'members#withdraw', as: 'withdraw'
+    
     resources :members, only: [:index, :show] do
       resource :relationships, only: [:create, :destroy]
+      get 'member/favorites' => 'favorites#index', as: 'favorites'
       get 'followings' => 'relationships#followings', as: 'followings'
       get 'followers' => 'relationships#followers', as: 'followers'
     end
@@ -48,7 +50,7 @@ Rails.application.routes.draw do
       resources :post_comments, only: [:create, :update, :destroy]
       resource :favorites, only: [:create, :destroy]
     end
-    resources :boards, except: [:edit, :update] do
+    resources :boards, except: [:edit, :update, :destroy] do
       resources :board_comments, only: [:create, :update, :destroy]
     end
 

@@ -1,2 +1,21 @@
-<h1>Public::Boards#new</h1>
-<p>Find me in app/views/public/boards/new.html.erb</p>
+<div class="container">
+  <h2>新規掲示板</h2>
+  <%= form_with model:@board do |f| %>
+    <table class="table table-bordered">
+      <tbody>
+        <tr>
+          <td class="text-nowrap"><%= f.label :title ,"掲示板名", class: "form-label" %></td>
+          <td><%= f.text_field :title, :placeholder =>  "ジャンルタイトル", class: 'form-control' %></td>
+        </tr>
+         <tr>
+              <td><%= f.label :body, "掲示板概要", class: "form-label" %></td>
+              <td><%= f.text_area :body, :placeholder =>  "1文字以上、30文字以下で入力してください。", class: 'form-control' %></td>
+            </tr>
+        <tr>
+          <td></td>
+          <td><%= f.submit "新規登録", class: "btn btn-success" %></td>
+        </tr>
+      </tbody>
+    </table>
+  <% end %>
+</div>

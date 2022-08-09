@@ -35,5 +35,9 @@
     <th>フォロワー一覧</th>
     <th><%= link_to member.followers.count, member_followers_path(member) %></th>
   </tr>
+  <tr>
+    <th>ブックマーク一覧</th>
+    <th><%= link_to member.favorites.count, member_favorites_path(member_id: member.id) %></th>
+  </tr>
 </table>
 
