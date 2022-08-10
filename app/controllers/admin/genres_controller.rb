@@ -1,5 +1,5 @@
 class Admin::GenresController < ApplicationController
-  before_action :genre_member, only: [:edit, :update]
+  before_action :ensure_genre, only: [:edit, :update]
   
   def index
     @genres = Genre.all
@@ -26,7 +26,7 @@ class Admin::GenresController < ApplicationController
     params.require(:genre).permit(:name, :body)
   end
   
-  def genre_member
+  def ensure_genre
     @genre = Genre.find(params[:id])
   end
     

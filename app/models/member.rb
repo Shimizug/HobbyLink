@@ -23,17 +23,16 @@ class Member < ApplicationRecord
   # 自分をフォローしている人
   has_many :followers, through: :reverse_of_relationships, source: :follower
 
-
-
-
   validates :last_name, presence: true
   validates :first_name, presence: true
   validates :last_name_kana, presence: true, format: { with: /\A[ァ-ヶー－]+\z/ }
   validates :first_name_kana, presence: true, format: { with: /\A[ァ-ヶー－]+\z/ }
   validates :nickname, presence: true
   validates :introduction, length: { maximum: 30 }
-
+  
+  # 退会していない会員のみ一覧表示
   scope :only_active, -> { where(is_deleted: false) }
+
 
   enum hobby_state: { finding_hobby: 0, pseudo_trial: 1, has_hobby: 2 }
 
@@ -48,13 +47,24 @@ class Member < ApplicationRecord
       member.nickname = 'ゲスト'
     end
   end
+  
+  #キーワード検索
+  def self.search_for(content, method)
+    if method == 'perfect'
+      Member.where(nickname: content)
+    elsif method == 'forward'
+      Member.where('nickname LIKE ?', content+'%')
+    elsif method == 'backward'
+      Member.where('nickname LIKE ?', '%'+content)
+    else
+      Member.where('nickname LIKE ?', '%'+content+'%')
+    end
+  end
 
   # 会員の画像の投稿
   def get_profile_image
     (profile_image.attached?) ? profile_image : 'noimage_icon.png'
   end
-
-
 
   #フォローする
   def follow(member)
@@ -70,7 +80,7 @@ class Member < ApplicationRecord
     followings.include?(member)
   end
 
-
+ 
   def full_name
     first_name + " " + last_name
   end

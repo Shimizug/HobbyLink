@@ -19,7 +19,7 @@ class Public::MembersController < ApplicationController
     if @member.update(member_params)
       redirect_to member_path(@member), notice: "You have updated successfully."
     else
-      render "edit"
+      redirect_torequest.referer
     end
   end
 

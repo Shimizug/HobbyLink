@@ -1,11 +1,11 @@
 class Admin::BoardsController < ApplicationController
-  before_action :authenticate_member!
+  before_action :authenticate_admin!
   before_action :ensure_correct_member, only: [:edit, :update, :destroy]
 
   def show
     @board = Board.find(params[:id])
     @board_comment = BoardComment.new
-    @board_comments = BoardComment.all.page(params[:page]).per(25)
+    @board_comments = BoardComment.all.page(params[:page]).per(10)
   end
 
   def index

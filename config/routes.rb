@@ -7,7 +7,6 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get 'top' => 'homes#top', as: 'top'
-    get 'search' => 'homes#search', as: 'search'
     resources :members, only: [:index, :show, :edit, :update]
     resources :posts, only: [:index, :show, :destroy]
     resources :genres, only: [:index, :create, :edit, :update]
@@ -44,8 +43,7 @@ Rails.application.routes.draw do
       get 'followings' => 'relationships#followings', as: 'followings'
       get 'followers' => 'relationships#followers', as: 'followers'
     end
-
-
+    
     resources :posts do
       resources :post_comments, only: [:create, :update, :destroy]
       resource :favorites, only: [:create, :destroy]
@@ -53,9 +51,8 @@ Rails.application.routes.draw do
     resources :boards, except: [:edit, :update, :destroy] do
       resources :board_comments, only: [:create, :update, :destroy]
     end
-
-
   end
+  
+  get '/search', to: 'searches#search'
 
 end
-

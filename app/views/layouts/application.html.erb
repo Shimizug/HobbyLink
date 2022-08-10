@@ -18,8 +18,7 @@
         <% if member_signed_in? %>
           <strong class="d-inline-block col-4 offset-2 text-light">ようこそ、<%= current_member.nickname %>さん!</strong>
            <form class="d-flex ms-auto">
-              <input type="search" class="form-control form-control me-2" placeholder="キーワード">
-              <button type="submit" class="btn btn-warning btn-sm text-nowrap">検索</button>
+              <%= render 'searches/form' %>
             </form>
         <% end %>
         </div>
