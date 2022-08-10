@@ -12,3 +12,16 @@
   	<h3>見つかりませんでした。検索条件を変更して再度お試しください。</h3>
   <% end %>
 <% else %>
+<% if admin_signed_in %>
+ <% if member_signed_in? %>
+  <% if @result.exists? %> 
+  	<% if @model == 'member' %>
+  		<%= render 'admin/members/index', members: @result %>
+  	<% elsif @model == 'post' %>
+    	<%= render 'admin/posts/index', posts: @result %>
+  	<% else %>
+  		<%= render 'admin/boards/index', boards: @result %>
+  	<% end %>
+  <% else %>
+  	<h3>見つかりませんでした。検索条件を変更して再度お試しください。</h3>
+  <% end %>

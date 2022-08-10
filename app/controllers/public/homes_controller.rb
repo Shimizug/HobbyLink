@@ -1,4 +1,5 @@
 class Public::HomesController < ApplicationController
+  
   def top
     @new_posts = Post.all.last(5)
     @random_posts = Post.order("RANDOM()").limit(3)

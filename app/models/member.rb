@@ -35,6 +35,7 @@ class Member < ApplicationRecord
 
 
   enum hobby_state: { finding_hobby: 0, pseudo_trial: 1, has_hobby: 2 }
+  # enum is_deleted: { valid: false, deactivated: true } 
 
   #ゲストログイン用
   def self.guest

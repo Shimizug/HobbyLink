@@ -14,9 +14,9 @@ class Admin::MembersController < ApplicationController
 
   def update
     if @member.update(member_params)
-      redirect_to member_path(@member), notice: "You have updated successfully."
+      redirect_to admin_member_path(@member), notice: "You have updated successfully."
     else
-      redirect_torequest.referer
+      redirect_to request.referer
     end
   end
 

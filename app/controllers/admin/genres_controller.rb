@@ -9,7 +9,7 @@ class Admin::GenresController < ApplicationController
   def create
     @genre = Genre.new(genre_params)
     @genre.save
-    redirect_to request.referer
+    redirect_to request.referer, notice: "You have created genre successfully."
   end
 
   def edit
@@ -17,7 +17,7 @@ class Admin::GenresController < ApplicationController
 
   def update
     @genre.update(genre_params)
-    redirect_to admin_genres_path
+    redirect_to admin_genres_path, notice: "You have updated genre successfully."
   end
 
   private

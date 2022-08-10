@@ -1,0 +1,39 @@
+<table class='table table-bordered border-primary'>
+  <thead>
+    <tr>
+      <th>会員画像</th>
+      <th>会員ニックネーム</th>
+      <th>趣味ステータス</th>
+      <th>会員ステータス</th>
+      <th colspan="4"></th>
+      </tr>
+  </thead>
+  <tbody>
+    <% members.each do |member| %>
+      <tr>
+        <td rowspan="2"><%= image_tag member.get_profile_image, size:"80x80" %></td>
+        <td><%= member.nickname %></td>
+        <td><%= member.hobby_state_i18n %></td>
+        <td><%= member.is_deleted_i18n %></td>
+        <td><%= "フォロー数：#{member.followings.count}" %></td>
+        <td><%= "フォロワー数：#{member.followers.count}" %></td>
+        <td><%= "投稿数：#{member.posts.count}" %></td>
+        <td>
+          <% unless member.id == current_member.id %>
+            <%= render "public/relationships/btn", member: member %></td>
+          <% else %>
+            <%= link_to '編集画面へ',  edit_information_path(current_member.id), class: "btn btn-secondary"  %>
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="5"><%= "自己紹介文：#{member.introduction}" %></td>
+        <td><%= link_to  '詳細画面へ', member_path(member.id), class: "btn btn-primary" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<div class="offset-5 mb-5">
+  <%= paginate members %>
+</div>
+

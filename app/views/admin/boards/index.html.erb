@@ -4,9 +4,7 @@
       <h2>掲示板一覧</h2>
     </div>
     <div class="col-2 offset-4">
-      <% unless current_member.email == "guest@example.com" %>
-        <%= link_to "新規作成へ", new_board_path, class: "btn btn-info" %>
-      <% end %>
+      <%= link_to "新規作成へ", new_admin_board_path, class: "btn btn-info" %>
     </div>
     <%= render 'index', boards: @boards %>
   </div>

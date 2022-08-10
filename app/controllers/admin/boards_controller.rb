@@ -5,7 +5,7 @@ class Admin::BoardsController < ApplicationController
   def show
     @board = Board.find(params[:id])
     @board_comment = BoardComment.new
-    @board_comments = BoardComment.all.page(params[:page]).per(10)
+    @board_comments = @board.board_comments.page(params[:page]).per(10)
   end
 
   def index
@@ -14,9 +14,9 @@ class Admin::BoardsController < ApplicationController
 
   def create
     @board = Board.new(board_params)
-    @board.member_id = current_member.id
+    @board.member_id = current_admin.id
     if @board.save
-      redirect_to board_path(@board), notice: "You have created board successfully."
+      redirect_to admin_board_path(@board), notice: "You have created board successfully."
     else
       redirect_to referer
     end
@@ -27,7 +27,15 @@ class Admin::BoardsController < ApplicationController
 
   def update
     if @board.update(board_params)
-      redirect_to board_path(@board), notice: "You have updated board successfully."
+      redirect_to admin_board_path(@board), notice: "You have updated board successfully."
+    else
+      redirect_to referer
+    end
+  end
+
+  def destroy
+    if @board.destroy
+      redirect_to admin_boards_path, notice: "You have destroyed board successfully."
     else
       redirect_to referer
     end
@@ -46,7 +54,7 @@ class Admin::BoardsController < ApplicationController
   def ensure_correct_member
     @board = Board.find(params[:id])
     unless @board.member == current_member
-      redirect_to boards_path
+      redirect_to adminboards_path
     end
   end
 end

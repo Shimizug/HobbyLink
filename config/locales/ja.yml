@@ -36,5 +36,9 @@ ja:
         finding_hobby: "趣味探し中"
         pseudo_trial: "趣味を疑似体験したい"
         has_hobby: "趣味がある"
+        
+      # is_deleted:
+      #   valid: "有効"
+      #   deactivated: "退会済み"
 
 
