@@ -1,7 +1,7 @@
 class Admin::BoardCommentsController < ApplicationController
   def create
     board = Board.find(params[:board_id])
-    comment = current_member.board_comments.new(board_comment_params)
+    comment = current_admin.board_comments.new(board_comment_params)
     comment.board_id = board.id
     comment.save
     redirect_to request.referer

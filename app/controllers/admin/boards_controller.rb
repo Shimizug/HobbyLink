@@ -9,7 +9,7 @@ class Admin::BoardsController < ApplicationController
   end
 
   def index
-    @boards = Board.all.page(params[:page]).per(2)
+    @boards = Board.all.page(params[:page]).per(4)
   end
 
   def create
@@ -54,7 +54,7 @@ class Admin::BoardsController < ApplicationController
   def ensure_correct_member
     @board = Board.find(params[:id])
     unless @board.member == current_member
-      redirect_to adminboards_path
+      redirect_to admin_boards_path
     end
   end
 end

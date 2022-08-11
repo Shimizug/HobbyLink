@@ -1,12 +1,12 @@
 <div class="container">
   <h2>掲示板</h2>
   <div class="row">
-    <table class="table text-end table-border table-dark text-light">
-      <caption style="caption-side: top">タイトル：掲示板概要</caption>
+    <table class="table table-bordered table-dark text-light">
+      <caption style="caption-side: top; text-align: right;">タイトル：掲示板概要</caption>
       <thead>
         <tr>
-          <th><h5 class="col-4"><%= @board.title %></h5></th>
-          <th><h6 class="col-8"><%= @board.body %></h6></th>
+          <th class="col-4"><h5><%= @board.title %></h5></th>
+          <th class="col-8"><h6><%= @board.body %></h6></th>
         </tr>
       </thead>
     </table>

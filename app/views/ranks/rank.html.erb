@@ -1,0 +1,11 @@
+<div class="container">
+<% @post_favorite_ranks.each.with_index(1) do |post, i| %>
+  <%= "第#{i}位#{post.title}" %>
+
+<% end %>
+
+<% @post_comment_ranks.each.with_index(1) do |post, i| %>
+  <%= "第#{i}位#{post.title}" %>
+<% end %>
+
+

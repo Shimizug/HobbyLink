@@ -4,12 +4,11 @@ class Public::BoardsController < ApplicationController
   def show
     @board = Board.find(params[:id])
     @board_comment = BoardComment.new
-    @board_comments = @board.board.comments.page(params[:page]).per(10)
-    @post.post_comments.
+    @board_comments = @board.board_comments.page(params[:page]).per(10)
   end
 
   def index
-    @boards = Board.all.page(params[:page]).per(2)
+    @boards = Board.all.page(params[:page]).per(4)
   end
 
   def create
@@ -18,7 +17,7 @@ class Public::BoardsController < ApplicationController
     if @board.save
       redirect_to board_path(@board), notice: "You have created board successfully."
     else
-      redirect_to referer
+      redirect_to request.referer
     end
   end
 

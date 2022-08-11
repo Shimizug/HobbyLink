@@ -5,11 +5,11 @@
       <tbody>
         <tr>
           <td class="text-nowrap"><%= f.label :title ,"掲示板名", class: "form-label" %></td>
-          <td><%= f.text_field :title, :placeholder =>  "ジャンルタイトル", class: 'form-control' %></td>
+          <td><%= f.text_field :title, :placeholder =>  "1文字以上、15文字以下で入力してください。", class: 'form-control' %></td>
         </tr>
          <tr>
               <td><%= f.label :body, "掲示板概要", class: "form-label" %></td>
-              <td><%= f.text_area :body, :placeholder =>  "1文字以上、30文字以下で入力してください。", class: 'form-control' %></td>
+              <td><%= f.text_area :body, :placeholder =>  "1文字以上、60文字以下で入力してください。", class: 'form-control' %></td>
             </tr>
         <tr>
           <td></td>

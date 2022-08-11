@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-
   # 管理者用
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     sessions: "admin/sessions"
@@ -24,7 +23,7 @@ Rails.application.routes.draw do
 
   #ゲストログイン用
   devise_scope :member do
-    post 'guest_sign_in', to: 'public/sessions#guest_sign_in'
+    post 'guest_sign_in' => 'public/sessions#guest_sign_in'
   end
 
   scope module: :public do
@@ -43,16 +42,17 @@ Rails.application.routes.draw do
       get 'followings' => 'relationships#followings', as: 'followings'
       get 'followers' => 'relationships#followers', as: 'followers'
     end
-
+    
     resources :posts do
       resources :post_comments, only: [:create, :update, :destroy]
       resource :favorites, only: [:create, :destroy]
     end
+    
     resources :boards, except: [:edit, :update, :destroy] do
       resources :board_comments, only: [:create, :update, :destroy]
     end
   end
-
-
-    get 'search' => 'searches#search', as: 'search'
+  
+  get 'search' => 'searches#search', as: 'search'
+  get 'rank' => 'ranks#rank', as: 'rank'
 end

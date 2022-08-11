@@ -13,12 +13,14 @@
   <body>
     <header class="sticky-top">
       <div class="container mb-3">
-        <div class="row align-items-center bg-dark mb-1">
+        <div class="row align-items-center bg-info mb-1">
         <h1 class="d-inline-block col-2"><%= link_to "HobbyLink", (admin_signed_in? ? admin_top_path : root_path ), class: "text-light fnt-italic" %></h1>
         <% if member_signed_in? %>
           <strong class="d-inline-block col-4 offset-2 text-light">ようこそ、<%= current_member.nickname %>さん!</strong>
+        <% else %>
+          <div class="d-inline-block col-4 offset-2"></div>
         <% end %>
-        <% if member_signed_in || admin_signed_in %>
+        <% if member_signed_in? || admin_signed_in? %>
           <div>
             <%= render 'searches/form' %>
           </div>
