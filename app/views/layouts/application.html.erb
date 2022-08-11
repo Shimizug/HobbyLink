@@ -11,51 +11,64 @@
   </head>
 
   <body>
-    <header class="sticky-top">
-      <div class="container mb-3">
-        <div class="row align-items-center bg-info mb-1">
-        <h1 class="d-inline-block col-2"><%= link_to "HobbyLink", (admin_signed_in? ? admin_top_path : root_path ), class: "text-light fnt-italic" %></h1>
+    <header>
+      <div class="container-fluid" style="margin-bottom: 3.5em;">
+        <div class="row">
+          <div class="nav navbar navbar-expand-lg nav-tabs navbar-dark bg-dark fixed-top">
+            <%= link_to "HobbyLink", (admin_signed_in? ? admin_top_path : root_path ), class: "navbar-brand text-light" %>
+            <div class="navbar-toggler" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </div>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+              <% if admin_signed_in? %>
+                <li class="nav-item"><%= link_to '会員一覧',  admin_members_path, class: "nav-link text-light" %></li>
+                <li class="nav-item"><%= link_to '投稿一覧',  admin_posts_path, class: "nav-link text-light" %></li>
+                <li class="nav-item"><%= link_to '掲示板一覧',  admin_boards_path, class: "nav-link text-light" %></li>
+                <li class="nav-item"><%= link_to 'ジャンル一覧',  admin_genres_path, class: "nav-link text-light" %></li>
+                <li class="nav-item"><%= link_to 'ランキング', rank_path, class: "nav-link text-light" %></li>
+                <li class="nav-item"><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: "nav-link text-light" %></li>
+              <% elsif member_signed_in? %>
+                <li class="nav-item"><%= link_to 'マイページ', member_path(current_member.id), class: "nav-link text-light" %></li>
+                <li class="nav-item"><%= link_to '会員一覧', members_path, class: "nav-link text-light" %></li>
+                <li class="nav-item"><%= link_to '投稿一覧', posts_path, class: "nav-link text-light" %></li>
+                <li class="nav-item"><%= link_to '掲示板一覧',  boards_path, class: "nav-link text-light" %></li>
+                <li class="nav-item"><%= link_to 'ランキング', rank_path, class: "nav-link text-light" %></li>
+                <% unless current_member.email == "guest@example.com" %>
+                  <li class="nav-item"><%= link_to '新規投稿', new_post_path, class: "nav-link text-light" %></li>
+                <% end %>
+                <li class="nav-item"><%= link_to 'ログアウト', destroy_member_session_path, method: :delete, class: "nav-link text-light" %></li>
+              <% else %>
+                <li class="nav-item"><%= link_to 'top', root_path, class: "nav-link text-light" %></li>
+                <li class="nav-item"><%= link_to 'about', about_path, class: "nav-link text-light" %></li>
+                <li class="nav-item"><%= link_to '新規投稿', new_member_registration_path, class: "nav-link text-light" %></li>
+                <li class="nav-item"><%= link_to 'ログイン', new_member_session_path, class: "nav-link text-light" %></li>
+                <li class="nav-item"><%= link_to 'ゲストログイン（閲覧用)', guest_sign_in_path, method: :post, class: "nav-link text-light" %></li>
+              <% end %>
+            </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid">
+        <div class="row d-flex justify-content-around bg-info">
         <% if member_signed_in? %>
-          <strong class="d-inline-block col-4 offset-2 text-light">ようこそ、<%= current_member.nickname %>さん!</strong>
+          <strong class="align-self-center text-light text-nowrap">
+            <%= "ようこそ、#{current_member.nickname}さん" %>
+          </strong>
         <% else %>
-          <div class="d-inline-block col-4 offset-2"></div>
+          <div></div>
         <% end %>
         <% if member_signed_in? || admin_signed_in? %>
-          <div>
-            <%= render 'searches/form' %>
+          <div class="text-center pt-lg-3">
+            <%= render 'searches/form'%>
           </div>
         <% end %>
         </div>
-        <div class="row align-items-center bg-dark">
-          <ul class="nav nav-tabs">
-            <% if admin_signed_in? %>
-              <li class="nav-item"><%= link_to '会員一覧',  admin_members_path, class: "nav-link text-light" %></li>
-              <li class="nav-item"><%= link_to '投稿一覧',  admin_posts_path, class: "nav-link text-light" %></li>
-              <li class="nav-item"><%= link_to '掲示板一覧',  admin_boards_path, class: "nav-link text-light" %></li>
-              <li class="nav-item"><%= link_to 'ジャンル一覧',  admin_genres_path, class: "nav-link text-light" %></li>
-              <li class="nav-item"><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: "nav-link text-light" %></li>
-            <% elsif member_signed_in? %>
-              <li class="nav-item"><%= link_to 'マイページ', member_path(current_member.id), class: "nav-link text-light" %></li>
-              <li class="nav-item"><%= link_to '会員一覧', members_path, class: "nav-link text-light" %></li>
-              <li class="nav-item"><%= link_to '投稿一覧', posts_path, class: "nav-link text-light" %></li>
-              <li class="nav-item"><%= link_to '掲示板一覧',  boards_path, class: "nav-link text-light" %></li>
-              <% unless current_member.email == "guest@example.com" %>
-                <li class="nav-item"><%= link_to '新規投稿', new_post_path, class: "nav-link text-light" %></li>
-              <% end %>
-              <li class="nav-item"><%= link_to 'ログアウト', destroy_member_session_path, method: :delete, class: "nav-link text-light" %></li>
-            <% else %>
-              <li class="nav-item"><%= link_to 'top', root_path, class: "nav-link text-light" %></li>
-              <li class="nav-item"><%= link_to 'about', about_path, class: "nav-link text-light" %></li>
-              <li class="nav-item"><%= link_to '新規投稿', new_member_registration_path, class: "nav-link text-light" %></li>
-              <li class="nav-item"><%= link_to 'ログイン', new_member_session_path, class: "nav-link text-light" %></li>
-              <li class="nav-item"><%= link_to 'ゲストログイン（閲覧用)', guest_sign_in_path, method: :post, class: "nav-link text-light" %></li>
-            <% end %>
-          </ul>
       </div>
-    </div>
     </header>
     <main>
-      <p id="notice", class="text-center text-warning"><%= notice %></p>
+      <p id="notice", class="text-center text-primary"><%= notice %></p>
     <%= yield %>
     </main>
      <footer>

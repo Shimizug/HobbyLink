@@ -7,6 +7,9 @@
       <%= link_to "新規作成へ", new_admin_board_path, class: "btn btn-info" %>
     </div>
     <%= render 'index', boards: @boards %>
+    <div class="offset-5 mb-5">
+      <%= paginate @boards %>
+    </div>
   </div>
 </div>
 

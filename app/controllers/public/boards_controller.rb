@@ -8,7 +8,7 @@ class Public::BoardsController < ApplicationController
   end
 
   def index
-    @boards = Board.all.page(params[:page]).per(4)
+    @boards = Board.all.page(params[:page])
   end
 
   def create

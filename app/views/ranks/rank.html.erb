@@ -1,11 +1,40 @@
 <div class="container">
-<% @post_favorite_ranks.each.with_index(1) do |post, i| %>
-  <%= "第#{i}位#{post.title}" %>
+  <h2>ランキング</h2>
+  <div class="row">
+    <div class="col-10 col-lg-3 offset-1 mt-3">
+      <table class="table table-bordered text-center text-lg-left">
+        <thead>
+          <tr>
+            <th class="text-center table-secondary">投稿お気に入り数ランキング</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @post_favorite_ranks.each.with_index(1) do |post, i| %>
+            <tr>
+              <td><%= "第#{i}位：#{post.title}" %></td>
+            </tr>
+          <% end %> 
+        </tbody>
+      </table>
+    </div>
+    <div class="col-10 col-lg-3 offset-1 mt-3">
+      <table class="table table-bordered text-center text-lg-left">
+        <thead>
+          <tr>
+            <th class="text-center table-secondary">投稿コメント数ランキング</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @post_comment_ranks.each.with_index(1) do |post, i| %>
+            <tr>
+              <td><%= "第#{i}位：#{post.title}" %></td>
+            </tr>
+          <% end %> 
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
 
-<% end %>
-
-<% @post_comment_ranks.each.with_index(1) do |post, i| %>
-  <%= "第#{i}位#{post.title}" %>
-<% end %>
-
-
+<th>フォロワー数ランキング</th>
+    

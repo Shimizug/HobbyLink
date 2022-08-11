@@ -4,7 +4,7 @@ class Public::MembersController < ApplicationController
 
 
   def index
-    @members = Member.all.page(params[:page]).per(4)
+    @members = Member.all.page(params[:page])
   end
 
   def show
