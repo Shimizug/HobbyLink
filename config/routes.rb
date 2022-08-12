@@ -12,7 +12,9 @@ Rails.application.routes.draw do
       get 'followings' => 'relationships#followings', as: 'followings'
       get 'followers' => 'relationships#followers', as: 'followers'
     end
-    resources :posts, only: [:index, :show, :destroy]
+    resources :posts, only: [:index, :show, :destroy] do
+      resources :post_comments, only: [:destroy]
+    end
     resources :genres, only: [:index, :create, :edit, :update]
     resources :boards, except: [:edit] do
       resources :board_comments, only: [:create, :destroy]
@@ -53,7 +55,7 @@ Rails.application.routes.draw do
     end
     
     resources :boards, except: [:edit, :update, :destroy] do
-      resources :board_comments, only: [:create, :update, :destroy]
+      resources :board_comments, only: [:create, :destroy]
     end
   end
   

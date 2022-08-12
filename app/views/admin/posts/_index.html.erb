@@ -1,11 +1,12 @@
 <table class='table table-bordered text-center'>
-<thead class="table-secondary">
+  <thead class="table-secondary">
     <tr>
       <th>会員画像</th>
       <th>タイトル</th>
       <th>会員ニックネーム</th>
       <th>趣味ジャンル</th>
       <th>投稿日時</th>
+      <th>会員ステータス</th>
       </tr>
   </thead>
   <tbody>
@@ -17,18 +18,17 @@
         <td><%= post.genre.name %></td>
         <td><%= post.created_at.strftime('%Y/%m/%d') %></td>
         <td>
-          <% if post.member.id == current_member.id %>
-            <%= link_to '編集画面へ',  edit_post_path(post.id), class: "btn btn-secondary"  %>
-          <% else %>
-            <%= render "public/favorites/btn", post: post %>
-          <% end %>
+          <% unless post.member.is_deleted? %>
+    			  <span>有効</span>
+    			<% else %>
+    				<span>退会済み</span>
+    			<% end %>
         </td>
       </tr>
       <tr>
         <td colspan="4"><%= "投稿本文：#{post.body}" %></td>
-        <td><%= link_to  '詳細画面へ', post_path(post.id), class: "btn btn-primary" %></td>
+        <td><%= link_to  '詳細画面へ', admin_post_path(post.id), class: "btn btn-primary" %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
