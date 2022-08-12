@@ -10,21 +10,22 @@ class Public::BoardsController < ApplicationController
   def index
     @boards = Board.all.page(params[:page])
   end
+  
+  def new
+    @board = Board.new
+  end
 
   def create
     @board = Board.new(board_params)
     @board.member_id = current_member.id
     if @board.save
-      redirect_to board_path(@board), notice: "You have created board successfully."
+      redirect_to board_path(@board), notice: "掲示板が正常に作成されました。"
     else
       redirect_to request.referer
     end
   end
 
-  def new
-    @board = Board.new
-  end
-
+  
   private
 
   def board_params

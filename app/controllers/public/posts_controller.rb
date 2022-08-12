@@ -5,26 +5,26 @@ class Public::PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @post_comment = PostComment.new
-    @post_comments = @post.post_comments.page(params[:page]).per(4)
+    @post_comments = @post.post_comments.page(params[:page])
   end
 
   def index
-    @posts = Post.all.page(params[:page]).per(4)
+    @posts = Post.all.page(params[:page])
+  end
+  
+  def new
+    @post = Post.new
+    @genres = Genre.all
   end
 
   def create
     @post = Post.new(post_params)
     @post.member_id = current_member.id
     if @post.save
-      redirect_to post_path(@post), notice: "You have created post successfully."
+      redirect_to post_path(@post), notice: "投稿が正常に作成されました。"
     else
       redirect_to request.referer
     end
-  end
-
-  def new
-    @post = Post.new
-    @genres = Genre.all
   end
 
   def edit
@@ -33,15 +33,18 @@ class Public::PostsController < ApplicationController
 
   def update
     if @post.update(post_params)
-      redirect_to post_path(@post), notice: "You have updated post successfully."
+      redirect_to post_path(@post), notice: "投稿が正常に更新されました。"
     else
       redirect_to request.referer
     end
   end
 
   def destroy
-    @post.destroy
-    redirect_to posts_path
+    if @post.destroy
+      redirect_to posts_path, notice: "投稿が正常に削除されました。"
+    else
+      redirect_to request.referer
+    end
   end
 
   private

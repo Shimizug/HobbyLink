@@ -1,4 +1,4 @@
-<%= form_with model:[board, board_comment], local: true do |f| %>
+<%= form_with model:[board, board_comment], url: admin_board_board_comments_path(board.id), local: true do |f| %>
    <table class="table table-borderless">
     <thead>
       <tr>

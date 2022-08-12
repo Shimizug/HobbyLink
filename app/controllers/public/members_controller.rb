@@ -2,14 +2,13 @@ class Public::MembersController < ApplicationController
   before_action :authenticate_member!
   before_action :ensure_correct_member, only: [:edit, :update, :unsubscribe, :withdraw]
 
-
-  def index
-    @members = Member.all.page(params[:page])
-  end
-
   def show
     @member = Member.find(params[:id])
     @new_posts = @member.posts.last(4)
+  end
+
+  def index
+    @members = Member.where(is_deleted: false).where.not(email: "guest@example.com").page(params[:page])
   end
 
   def edit
@@ -17,15 +16,17 @@ class Public::MembersController < ApplicationController
 
   def update
     if @member.update(member_params)
-      redirect_to member_path(@member), notice: "You have updated successfully."
+      redirect_to member_path(@member), notice: "会員が正常に更新されました。"
     else
-      redirect_torequest.referer
+      redirect_to request.referer
     end
   end
-
+  
+  #退会画面の表示
   def unsubscribe
   end
-
+  
+  #退会の操作
   def withdraw
     @member.update(is_deleted: true)
     reset_session
@@ -37,7 +38,7 @@ class Public::MembersController < ApplicationController
   private
 
   def member_params
-    params.require(:member).permit(:email, :first_name, :last_name, :first_name_kana, :last_name_kana, :nickname, :genre_id, :introduction, :profile_image, :is_deleted)
+    params.require(:member).permit(:email, :first_name, :last_name, :first_name_kana, :last_name_kana, :nickname, :genre_id, :introduction, :profile_image, :is_deleted, :hobby_state)
   end
 
   def ensure_correct_member

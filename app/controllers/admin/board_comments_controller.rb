@@ -1,7 +1,9 @@
 class Admin::BoardCommentsController < ApplicationController
+  before_action :authenticate_admin!
   def create
     board = Board.find(params[:board_id])
-    comment = current_admin.board_comments.new(board_comment_params)
+    comment = BoardComment.new(board_comment_params)
+    comment.member_id = current_admin.id
     comment.board_id = board.id
     comment.save
     redirect_to request.referer

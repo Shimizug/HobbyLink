@@ -1,6 +1,7 @@
 Admin.create!(
   email: 'hobby@gmail.com',
   password: '123456',
+  nickname: '管理人'
 )
 
 Member.create!(

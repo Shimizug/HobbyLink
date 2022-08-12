@@ -16,8 +16,6 @@ class Member < ApplicationRecord
   has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
   # 自分がフォローしている人
   has_many :followings, through: :relationships, source: :followed
-  has_one_attached :profile_image
-
   # 自分がフォローされる側の関係性
   has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
   # 自分をフォローしている人
@@ -30,10 +28,6 @@ class Member < ApplicationRecord
   validates :nickname, presence: true
   validates :introduction, length: { maximum: 30 }
   
-  # 退会していない会員のみ一覧表示
-  scope :only_active, -> { where(is_deleted: false) }
-
-
   enum hobby_state: { finding_hobby: 0, pseudo_trial: 1, has_hobby: 2 }
   
   #ゲストログイン用
@@ -48,19 +42,8 @@ class Member < ApplicationRecord
     end
   end
   
-  #キーワード検索
-  def self.search_for(content, method)
-    if method == 'perfect'
-      Member.where(nickname: content)
-    elsif method == 'forward'
-      Member.where('nickname LIKE ?', content+'%')
-    elsif method == 'backward'
-      Member.where('nickname LIKE ?', '%'+content)
-    else
-      Member.where('nickname LIKE ?', '%'+content+'%')
-    end
-  end
-
+  has_one_attached :profile_image
+  
   # 会員の画像の投稿
   def get_profile_image
     (profile_image.attached?) ? profile_image : 'noimage_icon.png'
@@ -75,6 +58,7 @@ class Member < ApplicationRecord
   def unfollow(member)
     relationships.find_by(followed_id: member.id).destroy
   end
+  
   #フォローしているか調べる
   def following?(member)
     followings.include?(member)

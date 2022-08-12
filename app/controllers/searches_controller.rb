@@ -11,26 +11,50 @@ class SearchesController < ApplicationController
 
   def search_for(model, content, method)
     if model == 'member'
-      if method == 'forward'
-        Member.where(
-          'last_name LIKE ? OR first_name LIKE? OR last_name_kana LIKE? OR first_name_kana LIKE?',
-          "#{content}%", "#{content}%", "#{content}%", "#{content}%"
-        )
-      elsif method == 'backward'
-        Member.where(
-          'last_name LIKE ? OR first_name LIKE? OR last_name_kana LIKE? OR first_name_kana LIKE?',
-          "%#{content}", "%#{content}", "%#{content}", "%#{content}"
-        )
-      elsif method == 'perfect'
-        Member.where(
-          'last_name = ? OR first_name = ? OR last_name_kana = ? OR first_name_kana = ?',
-          content, content, content, content
-        )
-      else # partial
-        Member.where(
-          'last_name LIKE ? OR first_name LIKE? OR last_name_kana LIKE? OR first_name_kana LIKE?',
-          "%#{content}%", "%#{content}%", "%#{content}%", "%#{content}%"
-        )
+      if member_signed_in?
+        if method == 'forward'
+          Member.where(
+            'last_name LIKE ? OR first_name LIKE? OR last_name_kana LIKE? OR first_name_kana LIKE?',
+            "#{content}%", "#{content}%", "#{content}%", "#{content}%"
+          ).where(is_deleted: false)
+        elsif method == 'backward'
+          Member.where(
+            'last_name LIKE ? OR first_name LIKE? OR last_name_kana LIKE? OR first_name_kana LIKE?',
+            "%#{content}", "%#{content}", "%#{content}", "%#{content}"
+          ).where(is_deleted: false)
+        elsif method == 'perfect'
+          Member.where(
+            'last_name = ? OR first_name = ? OR last_name_kana = ? OR first_name_kana = ?',
+            content, content, content, content
+          ).where(is_deleted: false)
+        else # partial
+          Member.where(
+            'last_name LIKE ? OR first_name LIKE? OR last_name_kana LIKE? OR first_name_kana LIKE?',
+            "%#{content}%", "%#{content}%", "%#{content}%", "%#{content}%"
+          ).where(is_deleted: false)
+        end
+      else
+        if method == 'forward'
+          Member.where(
+            'last_name LIKE ? OR first_name LIKE? OR last_name_kana LIKE? OR first_name_kana LIKE?',
+            "#{content}%", "#{content}%", "#{content}%", "#{content}%"
+          )
+        elsif method == 'backward'
+          Member.where(
+            'last_name LIKE ? OR first_name LIKE? OR last_name_kana LIKE? OR first_name_kana LIKE?',
+            "%#{content}", "%#{content}", "%#{content}", "%#{content}"
+          )
+        elsif method == 'perfect'
+          Member.where(
+            'last_name = ? OR first_name = ? OR last_name_kana = ? OR first_name_kana = ?',
+            content, content, content, content
+          )
+        else # partial
+          Member.where(
+            'last_name LIKE ? OR first_name LIKE? OR last_name_kana LIKE? OR first_name_kana LIKE?',
+            "%#{content}%", "%#{content}%", "%#{content}%", "%#{content}%"
+          )
+        end
       end
     elsif model == 'post'
       if method == 'forward'

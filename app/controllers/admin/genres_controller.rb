@@ -1,4 +1,5 @@
 class Admin::GenresController < ApplicationController
+  before_action :authenticate_admin!
   before_action :ensure_genre, only: [:edit, :update]
   
   def index
@@ -9,15 +10,18 @@ class Admin::GenresController < ApplicationController
   def create
     @genre = Genre.new(genre_params)
     @genre.save
-    redirect_to request.referer, notice: "You have created genre successfully."
+    redirect_to request.referer, notice: "ジャンルが正常に作成されました。"
   end
 
   def edit
   end
 
   def update
-    @genre.update(genre_params)
-    redirect_to admin_genres_path, notice: "You have updated genre successfully."
+    if @genre.update(genre_params)
+      redirect_to admin_genres_path, notice: "ジャンルが正常に更新されました。"
+    else 
+      redirect_to request.referer
+    end
   end
 
   private

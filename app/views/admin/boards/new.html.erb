@@ -1,7 +1,7 @@
 <div class="container">
-  <h2>新規掲示板</h2>
+  <h2 class>新規掲示板</h2>
   <%= form_with model:@board, url: admin_boards_path do |f| %>
-    <table class="table table-bordered">
+    <table class="table table-bordered text-center">
       <tbody>
         <tr>
           <td class="text-nowrap"><%= f.label :title ,"掲示板名", class: "form-label" %></td>
@@ -9,11 +9,10 @@
         </tr>
          <tr>
               <td><%= f.label :body, "掲示板概要", class: "form-label" %></td>
-              <td><%= f.text_area :body, :placeholder =>  "1文字以上、60文字以下で入力してください。", class: 'form-control' %></td>
+              <td><%= f.text_area :body, :placeholder =>  "1文字以上、80文字以下で入力してください。", class: 'form-control' %></td>
             </tr>
         <tr>
-          <td></td>
-          <td><%= f.submit "新規登録", class: "btn btn-success" %></td>
+          <td colspan="2"><%= f.submit "新規登録", class: "btn btn-success" %></td>
         </tr>
       </tbody>
     </table>

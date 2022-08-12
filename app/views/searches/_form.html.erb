@@ -1,8 +1,8 @@
 <% if member_signed_in? || admin_signed_in? %>
   <%= form_with url: search_path, method: :get, local: true do |f| %>
     <ul class="list-inline">
-      <li class="list-inline-item"><%= f.text_field :content, :placeholder =>"キーワード", class: "text-center form-control form-control-sm" %></li>
-      <li class="list-inline-item"><%= f.select :model, options_for_select({ "会員" => "member", "投稿" => "post", "掲示板" => "board" }), class: "form-control" %></th></li>
+      <li class="list-inline-item"><%= f.text_field :content, :placeholder =>"キーワード入力", class: "text-center form-control form-control-sm" %></li>
+      <li class="list-inline-item"><%= f.select :model, options_for_select({ "会員名" => "member", "投稿名" => "post", "掲示板名" => "board" }), class: "form-control" %></th></li>
       <li class="list-inline-item"><%= f.select :method, options_for_select({ "完全一致" => "perfect", "前方一致" => "forward", "後方一致" => "backward", "部分一致" => "partial" }), class: "form-control" %></li>
       <li class="list-inline-item"><%= f.submit '検索', class: "btn btn-warning btn-sm text-center" %></li>
     </ul>
