@@ -1,24 +1,27 @@
 <div class='container'>
-  <div class='row'>
-      <h2>会員詳細</h2>
-        <%= link_to "編集画面へ", edit_admin_member_path(@member.id), class: "btn btn-secondary" %>
-      <%= render 'show', member: @member %>
-    </div>
-    <div class="col-md-2 offset-md-1">
-      <h3>新規投稿</h3>
-      <% @new_posts.reverse_each do |post| %>
-        <%= link_to admin_post_path(post.id) do %>
-          <div class="card mb-3">
-            <div class="card-header text-dark text-center">
-              <%= post.title %>
-            </div>
-            <div class="card-body mb-2 text-dark">
-              <%= image_tag post.get_image, size:"50x50", class: "card-img" %>
-              <p class="card-text text-center"><%= post.member.nickname %></p>
-              <p class="card-text text-center"><%= post.created_at.strftime('%Y/%m/%d') %></p>
-            </div>
+  <div class='row mb-2'>
+    <h2 class="col-3 text-nowrap">会員詳細</h2>
+    <%= link_to "編集画面へ", edit_admin_member_path(@member.id), class: "btn btn-secondary offset-6 col-3 text-nowrap" %>
+  </div>
+  <div class="row">
+    <%= render 'show', member: @member %>
+  </div>
+  <h3>新規投稿</h3>
+  <div class="row">
+    <% @new_posts.reverse_each do |post| %>
+      <div class="card-group">
+      <%= link_to admin_post_path(post.id) do %>
+        <div class="card text-center px-3 mx-3">
+          <div class="card-header text-dark">
+            <%= post.title %>
           </div>
-        <% end %>
+          <div class="card-body text-dark">
+            <%= image_tag post.get_image, size:"60x60", class: "card-img" %>
+            <p class="card-text"><%= post.created_at.strftime('%Y/%m/%d') %></p>
+          </div>
+        </div>
       <% end %>
-    </div>
+      </div>
+    <% end %>
+  </div>
 </div>

@@ -1,4 +1,4 @@
-<%= form_with(model:[post, post_comment], local: true) do |f| %>
+<%= form_with(model:[post, post_comment], url: admin_post_post_comments_path(post.id), local: true) do |f| %>
   <table class="table table bordered">
     <thead>
       <th></th>

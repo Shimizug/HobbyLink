@@ -52,22 +52,26 @@
             </tr>
             <tr>
               <td>趣味ステータス</td>
-              <td>
-                <%= f.radio_button :hobby_state, "finding_hobby", class: "form-check-input" %>
-                <%= f.label :hobby_state, "趣味探し中", class: "form-check-label" %>
-              </td>
-              <td>
-                <%= f.radio_button :hobby_state, "psudo_trial", class: "form-check-input" %>
-                <%= f.label :hobby_state, "趣味を疑似体験したい", class: "form-check-label" %>
-              </td>
-              <td>
-                <%= f.radio_button :hobby_state, "has_hobby", class: "form-check-input" %>
-                <%= f.label :hobby_state, "趣味がある", class: "form-check-label" %>
+              <td colspan="2">
+                <span class="px-5">
+                  <%= f.radio_button :hobby_state, "finding_hobby", class: "form-check-input" %>
+                  <%= f.label :hobby_state, "趣味探し中", class: "form-check-label" %>
+                </span>
+                <span class="pe-5">
+                  <%= f.radio_button :hobby_state, "pseudo_trial", class: "form-check-input" %>
+                  <%= f.label :hobby_state, "趣味を疑似体験したい", class: "form-check-label" %>
+                </span>
+                <span class="px-5">
+                  <%= f.radio_button :hobby_state, "has_hobby", class: "form-check-input" %>
+                  <%= f.label :hobby_state, "趣味がある", class: "form-check-label" %>
+                </span>
               </td>
             </tr>
             <tr>
-					    <td colspan="2"><%= f.submit "編集内容を保存する", class: "btn btn-success" %></td>
-					    <td><%= link_to "退会する", confirm_unsubscribe_path(current_member.id), class: "btn btn-danger" %></td>
+					   <td colspan="3">
+					      <%= f.submit "編集内容を保存する", class: "btn btn-success" %>
+					      <%= link_to "退会する", confirm_unsubscribe_path(current_member.id), class: "btn btn-danger" %>
+					   </td>
 				    </tr>
           </tbody>
         </table>

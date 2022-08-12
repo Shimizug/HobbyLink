@@ -12,17 +12,26 @@
     </table>
   </div>
   <div class="row">
-    <% @board_comments.each do |board_comment| %>
-      <table class="table table-sm table-borderless table-striped">
-        <thead>
-          <tr>
-            <th class="text-wrap col-10", style="word-break: break-all"><%= board_comment.comment %></th>
-            <th class="text-nowrap col-1"><%= board_comment.member.nickname %></th>
-            <th class="text-nowrap col-1"><%= board_comment.created_at.strftime('%Y/%m/%d') %></th>
-          </tr>
-        </thead>
+    <table class="table table-sm table-borderless table-striped text-center table-hover">
+      <thead class="table-secondary">
+        <tr>
+          <th class="text-wrap col-10">コメント文</th>
+          <th class="text-nowrap col-1">会員名</th>
+          <th class="text-nowrap col-1">投稿日</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @board_comments.each do |board_comment| %>
+        <tr>
+          <td class="text-wrap col-10 text-left", style="word-break: break-all"><%= board_comment.comment %></td>
+          <td class="text-nowrap col-1"><%= board_comment.member.nickname %></td>
+          <td class="text-nowrap col-1"><%= board_comment.created_at.strftime('%Y/%m/%d') %></td>
+          <td> <%= link_to "削除", board_board_comment_path(@board, board_comment), method: :delete, class: "btn btn-danger btn-sm text-nowrap" %></td>
+        </tr>
+      <% end %>
+      </tbody>
       </table>
-    <% end %>
 </div>
 <div class="offset-5 mb-5">
   <%= paginate @board_comments %>
