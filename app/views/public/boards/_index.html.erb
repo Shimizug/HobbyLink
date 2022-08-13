@@ -1,5 +1,5 @@
-<table class='table table-bordered border-primary text-center'>
-  <thead>
+<table class='table table-bordered text-center'>
+  <thead class="table-secondary">
     <tr>
       <th>タイトル</th>
       <th>概要</th>
@@ -12,9 +12,13 @@
   <tbody>
     <% boards.each do |board| %>
       <tr>
-        <td><%= image_tag board.member.get_profile_image, size:"50x50" %></td>
         <td><%= board.title %></td>
         <td><%= board.body %></td>
+        <% if board.member.is_deleted == false %>
+          <td><%= link_to board.member.nickname, member_path(board.member.id) %></td>
+        <% else %>
+          <td><%= board.member.nickname %></td>
+        <% end %>
         <td><%= board.created_at.strftime('%Y/%m/%d') %></td>
         <td><%=board.updated_at.strftime('%Y/%m/%d') %></td>
         <td><%= link_to "掲示板へ", board_path(board.id), class: "btn btn-primary" %></td>

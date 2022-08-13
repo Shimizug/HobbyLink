@@ -46,7 +46,7 @@ class Member < ApplicationRecord
   
   # 会員の画像の投稿
   def get_profile_image
-    (profile_image.attached?) ? profile_image : 'noimage_icon.png'
+    (profile_image.attached?) ? profile_image : 'no_image.png'
   end
 
   #フォローする
