@@ -1,19 +1,78 @@
 Admin.create!(
   email: 'hobby@gmail.com',
-  password: '123456',
-  nickname: '管理人'
+  password: '123456'
 )
 
+
+
+
 Member.create!(
-  first_name: '趣味',
-  last_name: '茂作',
-  first_name_kana: 'シュミ',
-  last_name_kana: 'モサク',
-  nickname: 'モサッキー',
-  introduction: '趣味探し中です。',
-  email: 'shumi@gmail.com',
-  password: '123456',
-  )
+  [
+    {
+      first_name: '趣味',
+      last_name: '茂作',
+      first_name_kana: 'シュミ',
+      last_name_kana: 'モサク',
+      nickname: 'モサッキー',
+      email: 'shumi@gmail.com',
+      password: '123456',
+      profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/finding_hobby.png")),filename: 'finding_hobby.png')
+    },
+    {
+      first_name: '名無し',
+      last_name: '権兵衛',
+      first_name_kana: 'ナナシ',
+      last_name_kana: 'ゴンベエ',
+      nickname: 'ゴン',
+      hobby_state: 2,
+      introduction: '趣味はサッカーです。',
+      email: 'soccer@gmail.com',
+      password: '123456'
+    },
+    {
+      first_name: '名無し',
+      last_name: '権兵衛',
+      first_name_kana: 'ナナシ',
+      last_name_kana: 'ゴンベエ',
+      nickname: 'ゴン',
+      hobby_state: 2,
+      introduction: '趣味はサッカーです。',
+      email: 'nothing@gmail.com',
+      password: '123456'
+    },
+    {
+      first_name: '名無し',
+      last_name: '権兵衛',
+      first_name_kana: 'ナナシ',
+      last_name_kana: 'ゴンベエ',
+      nickname: 'ゴン',
+      hobby_state: 2,
+      introduction: '読書が好きです。',
+      
+      email: 'deactivated@gmail.com',
+      password: '123456'
+    }
+  ]
+)
+
+
+  
+
+# Post.create!(
+#   [
+#     {
+      
+#     },
+#   ]
+# )
+
+# board.create!(
+#   [
+#     {
+      
+#     },
+#   ]
+# )
 
 Genre.create!(
   [
