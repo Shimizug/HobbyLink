@@ -1,5 +1,6 @@
 class Admin::BoardCommentsController < ApplicationController
   before_action :authenticate_admin!
+  
   def create
     board = Board.find(params[:board_id])
     comment = BoardComment.new(board_comment_params)

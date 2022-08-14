@@ -13,7 +13,7 @@
             <tr>
               <td><%= "第#{i}位：#{post.title}" %></td>
             </tr>
-          <% end %> 
+          <% end %>
         </tbody>
       </table>
     </div>
@@ -29,12 +29,27 @@
             <tr>
               <td><%= "第#{i}位：#{post.title}" %></td>
             </tr>
-          <% end %> 
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-10 col-lg-3 offset-1 mt-3">
+      <table class="table table-bordered text-center text-lg-left">
+        <thead>
+          <tr>
+            <th class="text-center table-secondary">フォロワー数ランキン</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @member_follower_ranks.each.with_index(1) do |member, i| %>
+            <tr>
+              <td><%= "第#{i}位：#{member.nickname}" %></td>
+            </tr>
+          <% end %>
         </tbody>
       </table>
     </div>
   </div>
 </div>
 
-<th>フォロワー数ランキング</th>
-    
+

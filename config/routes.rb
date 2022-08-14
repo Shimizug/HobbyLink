@@ -13,7 +13,7 @@ Rails.application.routes.draw do
       get 'followers' => 'relationships#followers', as: 'followers'
     end
     resources :posts, only: [:index, :show, :destroy] do
-      resources :post_comments, only: [:destroy]
+      resources :post_comments, only: [:create,:destroy]
     end
     resources :genres, only: [:index, :create, :edit, :update]
     resources :boards, except: [:edit] do
