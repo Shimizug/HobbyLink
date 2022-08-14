@@ -64,32 +64,6 @@ Member.create!(
     }
   ]
 )
-first_names =  ["あめんぼ", "かきのき", "ささげに","たちましょ", "なめくじ", "はとぽっぽ", "まいまい", "やきぐり", "らいちょうは"]
-last_names = ["あかいな", "くりのき", "すをかけ", "らっぱで", "のろのろ", "ほろほろ", "ねじまき", "ゆでぐり", "さむかろ"]
-first_name_kanas = ["アメンボ", "カキノキ", "ササゲニ", "タチマショ", "ナメクジ", "ハトポッポ", "マイマイ", "ヤキグリ", "ライチョウハ"]
-last_name_kanas = ["アカイナ", "クリノキ", "スヲカケ", "ラッパデ", "ノロノロ", "ホロホロ", "ネジマキ", "ユデグリ", "サムカロ"]
-nicknames = ["あいうえお", "かきくけこ", "さしすせそ", "たちつてと", "なにぬねの", "はひふへほ", "まみむめも", "やいゆいえよ", "らりるれろ"]
-is_deleteds = [true, false]
-
-for i in 1..10 do
-  member = Member.new(
-    first_name: first_names[i-1],
-    last_name: last_names[i-1],
-    first_name_kana: first_name_kanas[i-1],
-    last_name_kana: last_name_kanas[i-1],
-    nickname: nicknames[i-1],
-    hobby_state: rand(2),
-    introduction: "test" * rand(1..5),
-    is_deleted: is_deleteds.sample,
-    email: "sample#{i}@com",
-    password: "123456",
-    profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/hobby-#{i-1}.png")),filename: "hobby-#{i-1}.png")
-  )
-  member.save
-end
-
-
-
 
 Genre.create!(
   [
@@ -197,6 +171,104 @@ Board.create!(
   ]
 )
 
+first_names =  ["あめんぼ", "かきのき", "ささげに","たちましょ", "なめくじ", "はとぽっぽ", "まいまい", "やきぐり", "らいちょうは"]
+last_names = ["あかいな", "くりのき", "すをかけ", "らっぱで", "のろのろ", "ほろほろ", "ねじまき", "ゆでぐり", "さむかろ"]
+first_name_kanas = ["アメンボ", "カキノキ", "ササゲニ", "タチマショ", "ナメクジ", "ハトポッポ", "マイマイ", "ヤキグリ", "ライチョウハ"]
+last_name_kanas = ["アカイナ", "クリノキ", "スヲカケ", "ラッパデ", "ノロノロ", "ホロホロ", "ネジマキ", "ユデグリ", "サムカロ"]
+nicknames = ["あいうえお", "かきくけこ", "さしすせそ", "たちつてと", "なにぬねの", "はひふへほ", "まみむめも", "やいゆいえよ", "らりるれろ"]
+is_deleteds = [true, false]
 
+for i in 1..10 do
+  member = Member.new(
+    first_name: first_names[i-1],
+    last_name: last_names[i-1],
+    first_name_kana: first_name_kanas[i-1],
+    last_name_kana: last_name_kanas[i-1],
+    nickname: nicknames[i-1],
+    hobby_state: rand(2),
+    introduction: "テスト！" * rand(1..10),
+    is_deleted: is_deleteds.sample,
+    email: "sample#{i}@com",
+    password: "123456",
+    profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/hobby-#{i-1}.png")),filename: "hobby-#{i-1}.png")
+  )
+  member.save
+end
+
+for i in 1..30 do
+  for j in 0..9 do
+    post = Post.new(
+      member_id: rand(1..5),
+      genre_id: rand(1..6),
+      title: "test#{i}",
+      body: "テスト" * i,
+      image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/hobby-#{j}.png")),filename: "hobby-#{j}.png")
+      )
+    post.save
+  end
+end
+
+for i in 1..5 do
+  board = Board.new(
+    member_id: i,
+    title: "test#{i}",
+    body: "テストの掲示板の概要です。" * i
+    )
+  board.save
+end
+
+for i in 1..50
+  post_comment = PostComment.new(
+    member_id: rand(1..5),
+    post_id: rand(1..8),
+    comment: "デモ" * i
+    )
+  post_comment.save
+end
+
+for i in 1..10
+  post_comment = PostComment.new(
+    admin_id: 1,
+    post_id: rand(1..8),
+    comment: "デモ" * i
+    )
+  post_comment.save
+end
+
+for i in 1..50
+  board_comment = BoardComment.new(
+    member_id: rand(1..5),
+    board_id: rand(1..2),
+    comment: "デモ" * i
+    )
+  board_comment.save
+end
+
+for i in 1..10
+  board_comment = BoardComment.new(
+    admin_id: 1,
+    board_id: rand(1..2),
+    comment: "デモ" * i
+    )
+  post_comment.save
+end
+
+for i in 1..4
+  relationship = Relationship.new(
+    follower_id: i,
+    followed_id: i + 1
+    )
+  relationship.save
+end
+
+for i in 1..8
+  for j in 1..5
+    favorite = Favorite.new(
+      member_id: j,
+      post_id: i
+      )
+    favorite.save
+  end
+end
 
 

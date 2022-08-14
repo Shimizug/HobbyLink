@@ -1,14 +1,10 @@
 <div class="container">
-  <div class="row">
+ <div class="row">
     <div class="col-2">
       <% @random_posts.each do |post| %>
         <%= link_to post_path(post.id), class: "text-decoration-none" do %>
-          <div class="card-header text-dark text-center">
-            <%= post.title%>
-          </div>
-          <div class="card-body text-dark mb-2">
-            <%= image_tag post.get_image, size:"60x60", class: "card-img" %>
-            <p class="card-text text-center"><%= post.member.nickname %></p>
+          <div class="card-body mb-2 text-dark text-center">
+            <%= image_tag post.get_image, size:"100x100", class: "card-image" %>
           </div>
         <% end %>
       <% end %>
@@ -19,15 +15,11 @@
       <p class="text-center">趣味今ない人も、</p>
       <p class="text-center">もっと余暇を楽しみましょう!!</p>
     </div>
-    <div class="col-2 offset-1">
+    <div class="col-2">
       <% @random_posts.each do |post| %>
         <%= link_to post_path(post.id), class: "text-decoration-none" do %>
-          <div class="card-header text-dark text-center">
-            <%= post.title%>
-          </div>
-          <div class="card-body text-dark mb-2">
-            <%= image_tag post.get_image, size:"60x60", class: "card-img" %>
-            <p class="card-text text-center"><%= post.member.nickname %></p>
+          <div class="card-body mb-2 text-dark text-center">
+            <%= image_tag post.get_image, size:"100x100", class: "card-image" %>
           </div>
         <% end %>
       <% end %>
