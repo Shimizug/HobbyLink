@@ -1,10 +1,7 @@
 Admin.create!(
-  email: 'hobby@gmail.com',
+  email: 'hobby@com',
   password: '123456'
 )
-
-
-
 
 Member.create!(
   [
@@ -14,9 +11,9 @@ Member.create!(
       first_name_kana: 'シュミ',
       last_name_kana: 'モサク',
       nickname: 'モサッキー',
-      email: 'shumi@gmail.com',
+      email: 'shumi@com',
       password: '123456',
-      profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/finding_hobby.png")),filename: 'finding_hobby.png')
+      profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/state-0.png")),filename: 'state-0.png')
     },
     {
       first_name: '名無し',
@@ -26,9 +23,9 @@ Member.create!(
       nickname: 'ゴン',
       hobby_state: 2,
       introduction: '趣味はサッカーです。',
-      email: 'soccer@gmail.com',
+      email: 'soccer@com',
       password: '123456',
-      profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/sports.png")),filename: 'sports.png')
+      profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/hobby-1.png")),filename: 'hobby-1.png')
     },
     {
       first_name: '疑似',
@@ -38,9 +35,9 @@ Member.create!(
       nickname: 'ギッジー',
       hobby_state: 1,
       introduction: '趣味、疑似体験してます。',
-      email: 'nothing@gmail.com',
+      email: 'nothing@com',
       password: '123456',
-      profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/pseudo_trial.png")),filename: 'pseudo_trial.png')
+      profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/state-1.png")),filename: 'state-1.png')
     },
     {
       first_name: '退会',
@@ -51,7 +48,7 @@ Member.create!(
       hobby_state: 2,
       introduction: '読書が好きです。',
       is_deleted: true,
-      email: 'deactivated@gmail.com',
+      email: 'deactivated@.com',
       password: '123456'
     },
      {
@@ -62,11 +59,37 @@ Member.create!(
       nickname: 'Reiji',
       hobby_state: 2,
       introduction: 'いろいろやってます。',
-      email: 'example@gmail.com',
+      email: 'example@.com',
       password: '123456'
     }
   ]
 )
+first_names =  ["あめんぼ", "かきのき", "ささげに","たちましょ", "なめくじ", "はとぽっぽ", "まいまい", "やきぐり", "らいちょうは"]
+last_names = ["あかいな", "くりのき", "すをかけ", "らっぱで", "のろのろ", "ほろほろ", "ねじまき", "ゆでぐり", "さむかろ"]
+first_name_kanas = ["アメンボ", "カキノキ", "ササゲニ", "タチマショ", "ナメクジ", "ハトポッポ", "マイマイ", "ヤキグリ", "ライチョウハ"]
+last_name_kanas = ["アカイナ", "クリノキ", "スヲカケ", "ラッパデ", "ノロノロ", "ホロホロ", "ネジマキ", "ユデグリ", "サムカロ"]
+nicknames = ["あいうえお", "かきくけこ", "さしすせそ", "たちつてと", "なにぬねの", "はひふへほ", "まみむめも", "やいゆいえよ", "らりるれろ"]
+is_deleteds = [true, false]
+
+for i in 1..10 do
+  member = Member.new(
+    first_name: first_names[i-1],
+    last_name: last_names[i-1],
+    first_name_kana: first_name_kanas[i-1],
+    last_name_kana: last_name_kanas[i-1],
+    nickname: nicknames[i-1],
+    hobby_state: rand(2),
+    introduction: "test" * rand(1..5),
+    is_deleted: is_deleteds.sample,
+    email: "sample#{i}@com",
+    password: "123456",
+    profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/hobby-#{i-1}.png")),filename: "hobby-#{i-1}.png")
+  )
+  member.save
+end
+
+
+
 
 Genre.create!(
   [
@@ -104,58 +127,58 @@ Post.create!(
       genre_id: 3,
       title: "サッカー",
       body: "今週の週末はサッカーをしました。",
-      image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/sports.png")),filename: 'sports.png')
+      image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/hobby-1.png")),filename: 'hobby-1.png')
     },
     {
       member_id: 2,
       genre_id: 4,
       title: "料理",
       body: "今日の昼食はオムライス。",
-      image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/cooking.png")),filename: 'cooking.png')
+      image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/hobby-2.png")),filename: 'hobby-2.png')
     },
     {
       member_id: 2,
       genre_id: 5,
       title: "ゲーム",
       body: "新作ゲーム攻略中。",
-      image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/game.png")),filename: 'game.png')
+      image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/hobby-3.png")),filename: 'hobby-3.png')
     },
     {
       member_id: 4,
       genre_id: 5,
       title: "Music",
       body: "音楽鑑賞♪",
-      image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/music.png")),filename: 'music.png')
+      image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/hobby-4.png")),filename: 'hobby-4.png')
     },
     {
       member_id: 4,
       genre_id: 3,
       title: "キャンプ",
       body: "家族でキャンプ♪",
-      image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/outdoor.png")),filename: 'outdoor.png')
+      image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/hobby-5.png")),filename: 'hobby-5.png')
     },
     {
       member_id: 5,
       genre_id: 3,
       title: "近所をランニング",
       body: "今日は、一日近所を走っていました。",
-      image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/running.png")),filename: 'running.png')
+      image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/hobby-6.png")),filename: 'hobby-6.png')
     },
     {
       member_id: 5,
       genre_id: 4,
       title: "お絵描き",
       body: "今日は人物画に挑戦！！輪郭が難しい",
-      image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/painting.png")),filename: 'painting.png')
+      image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/hobby-7.png")),filename: 'hobby-7.png')
     },
     {
       member_id: 5,
       genre_id: 5,
       title: "読書",
       body: "今日は積んでた本を消化しました。",
-      image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/reading.png")),filename: 'reading.png')
+      image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/hobby-8.png")),filename: 'hobby-8.png')
     },
-    
+
   ]
 )
 
@@ -173,4 +196,7 @@ Board.create!(
     }
   ]
 )
+
+
+
 

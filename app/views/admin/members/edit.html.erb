@@ -26,24 +26,24 @@
               <td>フリガナ</td>
               <td>
                 <%= f.label :first_name_kana, "(セイ)", class: "form-label" %>
-                <%= f.text_field :first_name_kana, :placeholder =>"セイセイ", class: "form-control" %>
+                <%= f.text_field :first_name_kana, :placeholder =>"セイ（全角カナ）", class: "form-control" %>
               </td>
               <td>
                 <%= f.label :last_name_kana, "(メイ)", class: "form-label" %>
-                <%= f.text_field :last_name_kana, :placeholder =>"メイ", class: "form-control" %>
+                <%= f.text_field :last_name_kana, :placeholder =>"メイ（全角カナ）", class: "form-control" %>
               </td>
             </tr>
             <tr>
               <td><%= f.label :email, "メールアドレス", class: "form-label"%></td>
-              <td colspan="2"><%= f.email_field :email, autocomplete: "email", class: "form-control" %></td>
+              <td colspan="2"><%= f.email_field :email,:placeholder =>"メールアドレス", autocomplete: "email", class: "form-control" %></td>
             </tr>
             <tr>
               <td><%= f.label :nickname, "ニックネーム", class: "form-label" %></td>
-              <td colspan="2"><%= f.text_field :nickname, autocomplete: "nickname", class: "form-control" %></td>
+              <td colspan="2"><%= f.text_field :nickname, :placeholder =>"ニックネーム", class: "form-control" %></td>
             </tr>
             <tr>
               <td><%= f.label :introduction, "自己紹介文", class: "form-label" %></td>
-              <td colspan="2"><%= f.text_area :introduction, autocomplete: "introduction", class: "form-control form-control-lg" %></td>
+              <td colspan="2"><%= f.text_area :introduction, :placeholder =>"1文字以上,40文字以下で入力してください。", class: "form-control" %></td>
             </tr>
             <tr>
               <td>趣味ステータス</td>

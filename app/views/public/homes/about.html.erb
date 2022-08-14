@@ -19,7 +19,7 @@
         <h3 class="text-center">趣味を探している人、</h3>
         <h3 class="text-center">人の投稿を通し趣味を疑似体験したい人、</h3>
         <h3 class="text-center">そのような人達のためのサイトです。</h3>
-        <h6 class="text-center pt-3">※以下の場合は投稿やコメント、会員そのものを削除させていただくことがあります。</h6>   
+        <h6 class="text-center pt-3">※以下の場合は投稿やコメント、会員そのものを削除させていただくことがあります。</h6>
         <ul>
           <li>公序良俗違反にあたる投稿等をした人</li>
           <li>名誉棄損にあたる投稿等をした人</li>
@@ -29,12 +29,8 @@
     <div class="col-2">
       <% @random_posts.each do |post| %>
         <%= link_to post_path(post.id), class: "text-decoration-none" do %>
-          <div class="card-header text-dark text-center">
-            <%= post.title%>
-          </div>
-          <div class="card-body text-dark mb-2">
-            <%= image_tag post.get_image, size:"60x60", class: "card-img" %>
-            <p class="card-text text-center"><%= post.member.nickname %></p>
+          <div class="card-body mb-2 text-dark text-center">
+            <%= image_tag post.get_image, size:"100x100", class: "card-image" %>
           </div>
         <% end %>
       <% end %>
@@ -48,11 +44,11 @@
       <%= link_to post_path(post.id) do %>
         <div class="card h-100 mx-3">
           <div class="card-header text-dark text-center">
-            <%= post.title %>
+            <%= post.title.truncate(10) %>
           </div>
           <div class="card-body mb-2 text-dark">
             <%= image_tag post.get_image, size:"60x60", class: "card-img" %>
-            <p class="card-text text-center"><%= post.member.nickname %></p>
+            <p class="card-text text-center"><%= post.member.nickname.truncate(10) %></p>
             <p class="card-text text-center"><%= post.created_at.strftime('%Y/%m/%d') %></p>
           </div>
         </div>
