@@ -8,12 +8,12 @@
     </div>
   </div>
   <div class="row">
-    <table class="table table-bordered table-dark text-light">
+    <table class="table table-bordered table-dark text-light text-center">
       <caption style="caption-side: top; text-align: right;">タイトル：掲示板概要</caption>
       <thead>
         <tr>
-          <th><h5 class="col-4"><%= @board.title %></h5></th>
-          <th><h6 class="col-8"><%= @board.body %></h6></th>
+          <th class="col-4"><h5><%= @board.title %></h5></th>
+          <th class="col-8"><h6><%= @board.body %></h6></th>
         </tr>
       </thead>
     </table>
@@ -23,7 +23,7 @@
       <thead class="table-secondary">
         <tr>
           <th class="text-wrap col-10">コメント文</th>
-          <th class="text-nowrap col-1">会員名</th>
+          <th class="text-nowrap col-1">投稿者名</th>
           <th class="text-nowrap col-1">投稿日</th>
           <th></th>
         </tr>
@@ -32,9 +32,19 @@
       <% @board_comments.each do |board_comment| %>
         <tr>
           <td class="text-wrap col-10 text-left", style="word-break: break-all"><%= board_comment.comment %></td>
-          <td class="text-nowrap col-1"><%= board_comment.member.nickname %></td>
+          <td class="text-nowrap col-1">
+            <% if board_comment.member_id != nil %>
+              <%= board_comment.member.nickname %>
+            <% else %>
+              <span class="text-danger">管理人</span>
+            <% end %>
+          </td>
           <td class="text-nowrap col-1"><%= board_comment.created_at.strftime('%Y/%m/%d') %></td>
-          <td> <%= link_to "削除", board_board_comment_path(@board, board_comment), method: :delete, class: "btn btn-danger btn-sm text-nowrap" %></td>
+          <% if board_comment.member_id != nil %>
+            <td><%= link_to "削除", admin_board_board_comment_path(@board, board_comment), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-danger btn-sm text-nowrap" %></td>
+          <% else %>
+            <td> <%= link_to "削除", admin_board_board_comment_path(@board, board_comment), method: :delete, class: "btn btn-danger btn-sm text-nowrap" %></td>
+          <% end %>
         </tr>
       <% end %>
       </tbody>
@@ -49,3 +59,4 @@
     </div>
   </div>
 </div>
+

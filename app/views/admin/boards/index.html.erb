@@ -3,9 +3,6 @@
     <div class= "col-6">
       <h2>掲示板一覧</h2>
     </div>
-    <div class="col-lg-2 offset-lg-4 col-3 offset-3">
-      <%= link_to "新規作成へ", new_admin_board_path, class: "btn btn-info" %>
-    </div>
     <%= render 'index', boards: @boards %>
     <div class="offset-5 mb-5">
       <%= paginate @boards %>

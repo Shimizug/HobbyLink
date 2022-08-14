@@ -10,31 +10,7 @@ class Admin::BoardsController < ApplicationController
   def index
     @boards = Board.all.page(params[:page])
   end
-  
-  def new
-    @board = Board.new
-  end
 
-  def create
-    @board = Board.new(board_params)
-    @board.member_id = current_admin.id
-    if @board.save
-      redirect_to admin_board_path(@board), notice: "掲示板が正常に作成されました。"
-    else
-      redirect_to referer
-    end
-  end
-
-  def edit
-  end
-
-  def update
-    if @board.update(board_params)
-      redirect_to admin_board_path(@board), notice: "掲示板が正常に更新されました。"
-    else
-      redirect_to referer
-    end
-  end
 
   def destroy
     if @board.destroy

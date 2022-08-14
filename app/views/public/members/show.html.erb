@@ -1,48 +1,75 @@
-<div class='container px-5 px-sm-0'>
+<div class='container'>
   <div class='row'>
-    <div class='col-md-9 d-inline'>
-      <% if current_member != @member %>
+    <div class='col-lg-9 d-inline'>
+      <% if current_member.email == "guest@example.com" %>
         <h2 class="d-inline-block my-5">会員詳細　</h2>
+      <% elsif current_member != @member %>
+         <h2 class="d-inline-block my-5">会員詳細　</h2>
         <%= render "public/relationships/btn", member: @member %>
       <% else %>
         <h2 class="d-inline-block my-5">マイページ　</h2>
         <%= link_to "編集画面へ",  edit_information_path(current_member.id), class: "btn btn-secondary" %>
       <% end %>
-      <%= render 'show', member: @member %>
+      <table class='table table-bordered border-primary '>
+        <tr>
+          <th>会員画像</th>
+          <th class="text-center"><%= image_tag @member.get_profile_image, size:"80x80" %></th>
+        </tr>
+        <tr>
+      	  <th>会員名</th>
+      	  <th><%= @member.full_name %></th>
+        </tr>
+        <tr>
+      	  <th>会員名（カナ）</th>
+      	  <th><%= @member.full_name_kana %></th>
+        </tr>
+        <tr>
+      	  <th>会員名</th>
+      	  <th><%= @member.nickname%></th>
+        </tr>
+        <tr>
+      	  <th>自己紹介文</th>
+      	  <th><%= @member.introduction %></th>
+        </tr>
+        <tr>
+      	  <th>メールアドレス</th>
+      	  <th><%= @member.email %></th>
+        </tr>
+        <tr>
+      	  <th>趣味ステータス</th>
+      	  <th><%= @member.hobby_state_i18n %></th>
+        </tr>
+        <tr>
+          <th>フォロー一覧</th>
+          <th><%= link_to @member.followings.count, member_followings_path(@member) %></th>
+        </tr>
+        <tr>
+          <th>フォロワー一覧</th>
+          <th><%= link_to @member.followers.count, member_followers_path(@member) %></th>
+        </tr>
+        <tr>
+          <th>ブックマーク一覧</th>
+          <th><%= link_to @member.favorites.count, member_favorites_path(member_id: @member.id) %></th>
+        </tr>
+      </table>
     </div>
   </div>
   <h3>新規投稿</h3>
   <div class="row">
     <% @new_posts.reverse_each do |post| %>
       <div class="card-group">
-      <%= link_to admin_post_path(post.id) do %>
+      <%= link_to post_path(post.id) do %>
         <div class="card text-center px-3 mx-3">
           <div class="card-header text-dark">
-            <%= post.title %>
+            <%= post.title.truncate(10) %>
           </div>
           <div class="card-body text-dark">
-            <%= image_tag post.get_image, size:"60x60", class: "card-img" %>
-            <p class="card-text"><%= post.created_at.strftime('%Y/%m/%d') %></p>
+            <%= image_tag post.get_image, size:"50x50", class: "card-image" %>
           </div>
         </div>
       <% end %>
       </div>
     <% end %>
-      <h3>新規投稿</h3>
-      <% @new_posts.reverse_each do |post| %>
-        <%= link_to post_path(post.id) do %>
-          <div class="card mb-3">
-            <div class="card-header text-dark text-center">
-              <%= post.title %>
-            </div>
-            <div class="card-body mb-2 text-dark">
-              <%= image_tag post.get_image, size:"50x50", class: "card-img" %>
-              <p class="card-text text-center"><%= post.member.nickname %></p>
-              <p class="card-text text-center"><%= post.created_at.strftime('%Y/%m/%d') %></p>
-            </div>
-          </div>
-        <% end %>
-      <% end %>
   </div>
 </div>
 

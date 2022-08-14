@@ -1,5 +1,5 @@
-<table class='table table-bordered border-primary'>
-  <thead>
+<table class='table table-bordered text-center'>
+  <thead class="table-secondary">
     <tr>
       <th>会員画像</th>
       <th>会員ニックネーム</th>
@@ -16,16 +16,16 @@
         <td><%= "フォロー数：#{member.followings.count}" %></td>
         <td><%= "フォロワー数：#{member.followers.count}" %></td>
         <td><%= "投稿数：#{member.posts.count}" %></td>
-        <td>
-          <% unless member.id == current_member.id %>
-            <%= render "public/relationships/btn", member: member %></td>
-          <% else %>
-            <%= link_to '編集画面へ',  edit_information_path(current_member.id), class: "btn btn-secondary"  %>
-          <% end %>
-        </td>
+        <% if current_member.email == "guest@example.com" %>
+          <td></td>
+        <% elsif member.id != current_member.id %>
+          <td><%= render "public/relationships/btn", member: member %></td>
+        <% else %>
+          <td><%= link_to '編集画面へ',  edit_information_path(current_member.id), class: "btn btn-secondary"  %></td>
+        <% end %>
       </tr>
       <tr>
-        <td colspan="5"><%= "自己紹介文：#{member.introduction}" %></td>
+        <td colspan="5" class="text-left"><%= "自己紹介文：#{member.introduction}" %></td>
         <td><%= link_to  '詳細画面へ', member_path(member.id), class: "btn btn-primary" %></td>
       </tr>
     <% end %>

@@ -1,49 +1,76 @@
 <div class="container">
   <h2>ランキング</h2>
   <div class="row">
-    <div class="col-10 col-lg-3 offset-1 mt-3">
-      <table class="table table-bordered text-center text-lg-left">
+    <div class="col-10 offset-1 col-lg-4 offset-lg-0 mt-3">
+      <table class="table table-bordered text-center">
         <thead>
-          <tr>
-            <th class="text-center table-secondary">投稿お気に入り数ランキング</th>
+          <tr><th colspan="3", class="table-dark text-light">投稿お気に入り数ランキング</th></tr>
+          <tr class="table-secondary">
+            <th>順位</th>
+            <th>投稿タイトル</th>
+            <th>お気に入り数</th>
           </tr>
         </thead>
         <tbody>
           <% @post_favorite_ranks.each.with_index(1) do |post, i| %>
             <tr>
-              <td><%= "第#{i}位：#{post.title}" %></td>
+              <td><%= "第#{i}位" %></td>
+              <% if admin_signed_in? %>
+                <td><%= link_to post.title.truncate(10), admin_post_path(post.id) %></td>
+              <% else %>
+                <td><%= link_to post.title.truncate(10), post_path(post.id) %></td>
+              <% end %>
+              <td><%= post.favorites.count %></td>
             </tr>
           <% end %>
         </tbody>
       </table>
     </div>
-    <div class="col-10 col-lg-3 offset-1 mt-3">
-      <table class="table table-bordered text-center text-lg-left">
+     <div class="col-10 offset-1 col-lg-4 offset-lg-0 mt-3">
+      <table class="table table-bordered text-center">
         <thead>
-          <tr>
-            <th class="text-center table-secondary">投稿コメント数ランキング</th>
+          <tr><th colspan="3", class="table-dark text-light">投稿コメント数ランキング</th></tr>
+          <tr class="table-secondary">
+            <th>順位</th>
+            <th>投稿タイトル</th>
+            <th>コメント数</th>
           </tr>
         </thead>
         <tbody>
           <% @post_comment_ranks.each.with_index(1) do |post, i| %>
             <tr>
-              <td><%= "第#{i}位：#{post.title}" %></td>
+              <td><%= "第#{i}位" %></td>
+              <% if admin_signed_in? %>
+                <td><%= link_to post.title.truncate(10), admin_post_path(post.id) %></td>
+              <% else %>
+                <td><%= link_to post.title.truncate(10), post_path(post.id) %></td>
+              <% end %>
+              <td><%= post.post_comments.count %></td>
             </tr>
           <% end %>
         </tbody>
       </table>
     </div>
-    <div class="col-10 col-lg-3 offset-1 mt-3">
-      <table class="table table-bordered text-center text-lg-left">
+    <div class="col-10 offset-1 col-lg-4 offset-lg-0 mt-3">
+      <table class="table table-bordered text-center">
         <thead>
-          <tr>
-            <th class="text-center table-secondary">フォロワー数ランキン</th>
+          <tr><th colspan="3", class="table-dark text-light">フォロワー数ランキング</th></tr>
+          <tr class="table-secondary">
+            <th>順位</th>
+            <th>会員名</th>
+            <th>フォロワー数</th>
           </tr>
         </thead>
         <tbody>
-          <% @member_follower_ranks.each.with_index(1) do |member, i| %>
+          <% @member_followed_ranks.each.with_index(1) do |member, i| %>
             <tr>
-              <td><%= "第#{i}位：#{member.nickname}" %></td>
+              <td><%= "第#{i}位" %></td>
+              <% if admin_signed_in? %>
+                <td><%= link_to member.nickname.truncate(10), admin_member_path(member.id) %></td>
+              <% else %>
+                <td><%= link_to member.nickname.truncate(10), member_path(member.id) %></td>
+              <% end %>
+              <td><%= member.followers.count %></td>
             </tr>
           <% end %>
         </tbody>

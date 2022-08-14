@@ -3,8 +3,7 @@ class Admin::PostCommentsController < ApplicationController
 
   def create
     post = Post.find(params[:post_id])
-    comment = PostComment.new(post_comment_params)
-    comment.member_id = current_admin.id
+    comment = current_admin.post_comments.new(post_comment_params)
     comment.post_id = post.id
     comment.save
     redirect_to request.referer

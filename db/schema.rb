@@ -53,7 +53,8 @@ ActiveRecord::Schema.define(version: 2022_08_03_125514) do
   end
 
   create_table "board_comments", force: :cascade do |t|
-    t.integer "member_id", null: false
+    t.integer "member_id"
+    t.integer "admin_id"
     t.integer "board_id", null: false
     t.text "comment", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -103,7 +104,8 @@ ActiveRecord::Schema.define(version: 2022_08_03_125514) do
   end
 
   create_table "post_comments", force: :cascade do |t|
-    t.integer "member_id", null: false
+    t.integer "member_id"
+    t.integer "admin_id"
     t.integer "post_id", null: false
     t.text "comment", null: false
     t.datetime "created_at", precision: 6, null: false

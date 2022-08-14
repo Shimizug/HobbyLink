@@ -25,9 +25,18 @@
       <% @board_comments.each do |board_comment| %>
         <tr>
           <td class="text-wrap col-10 text-left", style="word-break: break-all"><%= board_comment.comment %></td>
+          <td class="text-nowrap col-1">
+            <% if board_comment.member_id != nil %>
+              <%= board_comment.member.nickname %>
+            <% else %>
+              <span class="text-danger">管理人</span>
+            <% end %>
+          </td>
           <td class="text-nowrap col-1"><%= board_comment.member.nickname %></td>
           <td class="text-nowrap col-1"><%= board_comment.created_at.strftime('%Y/%m/%d') %></td>
-          <td> <%= link_to "削除", board_board_comment_path(@board, board_comment), method: :delete, class: "btn btn-danger btn-sm text-nowrap" %></td>
+          <% if current_member.id == board_comment.member.id %>
+            <td> <%= link_to "削除", board_board_comment_path(@board, board_comment), method: :delete, class: "btn btn-danger btn-sm text-nowrap" %></td>
+          <% end %>
         </tr>
       <% end %>
       </tbody>
@@ -38,7 +47,9 @@
 </div>
 <div class="row">
     <div class="col-10 offset-1">
+    <% if current_member.email != "guest@example.com" %>
       <%= render "public/board_comments/form", board: @board, board_comment: @board_comment %>
+    <% end %>
     </div>
   </div>
 </div>

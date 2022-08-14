@@ -16,7 +16,7 @@ Rails.application.routes.draw do
       resources :post_comments, only: [:create,:destroy]
     end
     resources :genres, only: [:index, :create, :edit, :update]
-    resources :boards, except: [:edit] do
+    resources :boards, except: [:destroy] do
       resources :board_comments, only: [:create, :destroy]
     end
   end
