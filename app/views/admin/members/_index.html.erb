@@ -2,7 +2,7 @@
   <thead class="table-secondary">
     <tr>
       <th>会員画像</th>
-      <th>会員ニックネーム</th>
+      <th>会員名</th>
       <th>趣味ステータス</th>
       <th>会員ステータス</th>
       <th>フォロー数</th>
@@ -15,7 +15,7 @@
     <% members.each do |member| %>
       <tr>
         <td rowspan="2"><%= image_tag member.get_profile_image, size:"80x80" %></td>
-        <td><%= member.nickname %></td>
+        <td><%= member.nickname.truncate(10) %></td>
         <td><%= member.hobby_state_i18n %></td>
         <td>
 					<% unless member.is_deleted? %>

@@ -1,6 +1,8 @@
-<h2>フォロー一覧</h2>
-<% if @members.exists? %>
-  <%= render 'public/members/index', members: @members %>
-<% else %>
-  <p>ユーザーはいません</p>
-<% end %>
+<div class="container">
+  <h2>フォロー一覧</h2>
+  <% if @members.exists? %>
+    <%= render 'h5ublic/members/index', members: @members %>
+  <% else %>
+    <h5>ユーザーはいません</h5>
+  <% end %>
+</div>

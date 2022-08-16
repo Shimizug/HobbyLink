@@ -12,15 +12,15 @@
   <tbody>
     <% boards.each do |board| %>
       <tr>
-        <td><%= board.title %></td>
-        <td><%= board.body %></td>
+        <td><%= board.title.truncate(10) %></td>
+        <td><%= board.body.truncate(30) %></td>
         <% if board.member.is_deleted == false %>
-          <td><%= link_to board.member.nickname, member_path(board.member.id) %></td>
+          <td><%= link_to board.member.nickname.truncate(10), member_path(board.member.id) %></td>
         <% else %>
-          <td><%= board.member.nickname %></td>
+          <td><%= board.member.nickname.truncate(10) %></td>
         <% end %>
         <td><%= board.created_at.strftime('%Y/%m/%d') %></td>
-        <td><%=board.updated_at.strftime('%Y/%m/%d') %></td>
+        <td><%= board.updated_at.strftime('%Y/%m/%d') %></td>
         <td><%= link_to "掲示板へ", board_path(board.id), class: "btn btn-primary" %></td>
       </tr>
     <% end %>

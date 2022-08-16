@@ -195,6 +195,58 @@ for i in 1..10 do
   member.save
 end
 
+Member.all.each do |member|
+  member.post_comments.create!(
+    member_id: member.id,
+    post_id: rand(1..8),
+    comment: "デモ#{member.nickname}"
+  )
+end
+    
+for i in 1..10
+  post_comment = PostComment.new(
+    admin_id: 1,
+    post_id: rand(1..8),
+    comment: "デモ" * i
+    )
+  post_comment.save
+end
+
+Member.all.each do |member|
+  member.board_comments.create!(
+    member_id: member.id,
+    board_id: rand(1..2),
+    comment: "デモ#{member.nickname}"
+  )
+end
+
+for i in 1..10
+  board_comment = BoardComment.new(
+    admin_id: 1,
+    board_id: rand(1..2),
+    comment: "デモ" * i
+    )
+  board_comment.save
+end
+
+for i in 1..4
+  relationship = Relationship.new(
+    follower_id: i,
+    followed_id: i + 1
+    )
+  relationship.save
+end
+
+for i in 1..8
+  for j in 1..5
+    favorite = Favorite.new(
+      member_id: j,
+      post_id: i
+      )
+    favorite.save
+  end
+end
+
 for i in 1..30 do
   for j in 0..9 do
     post = Post.new(
@@ -217,58 +269,5 @@ for i in 1..5 do
   board.save
 end
 
-for i in 1..50
-  post_comment = PostComment.new(
-    member_id: rand(1..5),
-    post_id: rand(1..8),
-    comment: "デモ" * i
-    )
-  post_comment.save
-end
-
-for i in 1..10
-  post_comment = PostComment.new(
-    admin_id: 1,
-    post_id: rand(1..8),
-    comment: "デモ" * i
-    )
-  post_comment.save
-end
-
-for i in 1..50
-  board_comment = BoardComment.new(
-    member_id: rand(1..5),
-    board_id: rand(1..2),
-    comment: "デモ" * i
-    )
-  board_comment.save
-end
-
-for i in 1..10
-  board_comment = BoardComment.new(
-    admin_id: 1,
-    board_id: rand(1..2),
-    comment: "デモ" * i
-    )
-  post_comment.save
-end
-
-for i in 1..4
-  relationship = Relationship.new(
-    follower_id: i,
-    followed_id: i + 1
-    )
-  relationship.save
-end
-
-for i in 1..8
-  for j in 1..5
-    favorite = Favorite.new(
-      member_id: j,
-      post_id: i
-      )
-    favorite.save
-  end
-end
 
 

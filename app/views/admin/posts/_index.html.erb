@@ -12,10 +12,10 @@
   <tbody>
     <% posts.each do |post| %>
       <tr>
-        <td rowspan="2"><%= image_tag post.get_image, size:"100x80" %></td>
-        <td><%= post.title %></td>
-        <td><%= post.member.nickname %></td>
-        <td><%= post.genre.name %></td>
+        <td rowspan="2"><%= image_tag post.get_image, size:"60x60" %></td>
+        <td><%= post.title.truncate(10) %></td>
+        <td><%= post.member.nickname.truncate(10) %></td>
+        <td><%= post.genre.name.truncate(10) %></td>
         <td><%= post.created_at.strftime('%Y/%m/%d') %></td>
         <td>
           <% unless post.member.is_deleted? %>
@@ -26,7 +26,7 @@
         </td>
       </tr>
       <tr>
-        <td colspan="4"><%= "投稿本文：#{post.body}" %></td>
+        <td colspan="4", class="text-left"><%= "投稿本文：#{post.body}" %></td>
         <td><%= link_to  '詳細画面へ', admin_post_path(post.id), class: "btn btn-primary" %></td>
       </tr>
     <% end %>

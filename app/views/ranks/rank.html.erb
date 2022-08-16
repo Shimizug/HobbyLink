@@ -68,7 +68,11 @@
               <% if admin_signed_in? %>
                 <td><%= link_to member.nickname.truncate(10), admin_member_path(member.id) %></td>
               <% else %>
-                <td><%= link_to member.nickname.truncate(10), member_path(member.id) %></td>
+                <% if member.is_deleted == false %>
+                  <td><%= link_to member.nickname.truncate(10), member_path(member.id) %></td>
+                <% else %>
+                  <td><%= member.nickname.truncate(10) %>
+                <% end %>
               <% end %>
               <td><%= member.followers.count %></td>
             </tr>

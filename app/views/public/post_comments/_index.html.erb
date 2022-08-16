@@ -1,16 +1,18 @@
 <table class="table table-bordered table-striped table-sm text-center">
-  <tr class="table-secondary">
-    <th style="width: 20%">投稿者</th>
-    <th style="width: 50%">コメント</th>
-    <th style="width: 20%">投稿日</th>
-    <th style="width: 10%"> </th>
-  </tr>
+  <thead>
+    <tr class="table-secondary">
+      <th style="width: 20%">投稿者</th>
+      <th style="width: 50%">コメント</th>
+      <th style="width: 20%">投稿日</th>
+      <th style="width: 10%"> </th>
+    </tr>
+  </thead>
   <tbody>
       <% post_comments.each do |post_comment| %>
       <tr>
         <td class="text-nowrap">
         <% if post_comment.member_id != nil %>
-          <%= link_to post_comment.member.nickname, member_path(post_comment.member) %>
+          <%= post_comment.member.nickname.truncate(10) %>
         <% else %>
           <span class="text-danger">管理人</span>
         <% end %>

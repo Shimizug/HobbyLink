@@ -4,7 +4,58 @@
     <%= link_to "編集画面へ", edit_admin_member_path(@member.id), class: "btn btn-secondary offset-6 col-3 text-nowrap" %>
   </div>
   <div class="row">
-    <%= render 'show', member: @member %>
+    <table class='table table-bordered text-center'>
+      <tr>
+        <th>会員画像</th>
+        <th><%= image_tag @member.get_profile_image, size:"60x60" %></th>
+      </tr>
+      <tr>
+    	  <th>会員名</th>
+    	  <th><%= @member.full_name %></th>
+      </tr>
+      <tr>
+    	  <th>会員名（カナ）</th>
+    	  <th><%= @member.full_name_kana %></th>
+      </tr>
+      <tr>
+    	  <th>会員ニックネーム</th>
+    	  <th><%= @member.nickname%></th>
+      </tr>
+      <tr>
+    	  <th>自己紹介文</th>
+    	  <th><%= @member.introduction %></th>
+      </tr>
+      <tr>
+    	  <th>メールアドレス</th>
+    	  <th><%= @member.email %></th>
+      </tr>
+      <tr>
+    	  <th>趣味ステータス</th>
+    	  <th><%= @member.hobby_state_i18n %></th>
+      </tr>
+      <tr>
+        <th>会員ステータス</th>
+        <th>
+    			<% unless @member.is_deleted? %>
+    			  <span>有効</span>
+    			<% else %>
+    				<span>退会済み</span>
+    			<% end %>
+    		</th>
+      </tr>
+      <tr>
+        <th>フォロー一覧</th>
+        <th><%= link_to @member.followings.count, admin_member_followings_path(@member) %></th>
+      </tr>
+      <tr>
+        <th>フォロワー一覧</th>
+        <th><%= link_to @member.followers.count, admin_member_followers_path(@member) %></th>
+      </tr>
+      <tr>
+        <th>ブックマーク一覧</th>
+        <th><%= link_to @member.favorites.count, admin_member_favorites_path(member_id: @member.id) %></th>
+      </tr>
+    </table>
   </div>
   <h3>新規投稿</h3>
   <div class="row">
@@ -13,7 +64,7 @@
       <%= link_to admin_post_path(post.id) do %>
         <div class="card text-center px-3 mx-3">
           <div class="card-header text-dark">
-            <%= post.title %>
+            <%= post.title.truncate(10) %>
           </div>
           <div class="card-body text-dark">
             <%= image_tag post.get_image, size:"60x60", class: "card-img" %>

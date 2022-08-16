@@ -1,8 +1,11 @@
 class SearchesController < ApplicationController
   
   def search
+    #どのモデルの要素を検索するかを指定
     @model = params['model']
+    #検索文字列を入力
     @content = params['content']
+    #検索する方式（前方一致など）を指定
     @method = params['method']
     @result = search_for(@model, @content, @method)
   end

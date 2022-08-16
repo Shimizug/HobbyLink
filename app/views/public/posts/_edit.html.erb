@@ -1,18 +1,14 @@
 <%= form_with model: post, local: true do |f| %>
-    <table class="table table-bordered">
-      <thead>
-        <th></th>
-        <th></th>
-      </thead>
+    <table class="table table-bordered text-center">
       <tbody>
         <tr>
           <td><%= f.label :title, "タイトル", class: "form-label" %></td>
           <td><%= f.text_field :title, :placeholder =>  "1文字以上、30文字以下で入力してください。", class: "form-control" %></td>
         </tr>
-         <tr>
-              <td><%= f.label :image, "投稿画像" %></td>
-              <td><%= f.file_field :image, :placeholder =>  "投稿画像", accept: "image/*" %></td>
-            </tr>
+        <tr>
+          <td><%= f.label :image, "投稿画像" %></td>
+          <td><%= f.file_field :image, :placeholder =>  "投稿画像", accept: "image/*" %></td>
+        </tr>
         <tr>
           <td><%= f.label :body, "本文", class: "form-label" %></td>
           <td><%= f.text_area :body, :placeholder =>  "1文字以上、100文字以下で入力してください。", class: "form-control" %></td>

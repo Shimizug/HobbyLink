@@ -1,7 +1,7 @@
 <div class='container'>
   <div class='row'>
     <div class="col-12 col-lg-10 offset-lg-1">
-      <% if current_member.email == "guest@example.com" || @member.is_deleted == true %>
+      <% if current_member.email == "guest@example.com" %>
         <h2 class="d-inline-block mr-5 mb-3">会員詳細</h2>
       <% elsif current_member != @member %>
          <h2 class="d-inline-block mr-5 mb-3">会員詳細</h2>
@@ -13,18 +13,20 @@
       <table class='table table-bordered text-center'>
         <tr>
           <th>会員画像</th>
-          <th><%= image_tag @member.get_profile_image, size:"80x80" %></th>
+          <th><%= image_tag @member.get_profile_image, size:"60x60" %></th>
         </tr>
+        <% if current_member.id == @member.id %>
+          <tr>
+        	  <th>会員名</th>
+        	  <th><%= @member.full_name %></th>
+          </tr>
+          <tr>
+        	  <th>会員名（カナ）</th>
+        	  <th><%= @member.full_name_kana %></th>
+          </tr>
+        <% end %>
         <tr>
-      	  <th>会員名</th>
-      	  <th><%= @member.full_name %></th>
-        </tr>
-        <tr>
-      	  <th>会員名（カナ）</th>
-      	  <th><%= @member.full_name_kana %></th>
-        </tr>
-        <tr>
-      	  <th>会員名</th>
+      	  <th>会員ニックネーム</th>
       	  <th><%= @member.nickname%></th>
         </tr>
         <tr>

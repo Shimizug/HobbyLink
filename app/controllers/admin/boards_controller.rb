@@ -1,6 +1,6 @@
 class Admin::BoardsController < ApplicationController
   before_action :authenticate_admin!
-  before_action :ensure_admin, only: [:show, :edit, :update, :destroy]
+  before_action :ensure_admin, only: [:show, :destroy]
 
   def show
     @board_comment = BoardComment.new

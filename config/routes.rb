@@ -16,7 +16,7 @@ Rails.application.routes.draw do
       resources :post_comments, only: [:create,:destroy]
     end
     resources :genres, only: [:index, :create, :edit, :update]
-    resources :boards, except: [:destroy] do
+    resources :boards, only: [:index, :show, :destroy] do
       resources :board_comments, only: [:create, :destroy]
     end
   end
@@ -35,7 +35,7 @@ Rails.application.routes.draw do
   scope module: :public do
     root 'homes#top'
     get 'about' => 'homes#about', as: 'about'
-    
+
     get 'members/information/:id/edit' => 'members#edit', as: 'edit_information'
     patch 'members/information/:id' => 'members#update', as: 'update_information'
     get 'members/unsubscribe/:id' => 'members#unsubscribe', as: 'confirm_unsubscribe'
@@ -48,17 +48,17 @@ Rails.application.routes.draw do
       get 'followings' => 'relationships#followings', as: 'followings'
       get 'followers' => 'relationships#followers', as: 'followers'
     end
-    
+
     resources :posts do
       resources :post_comments, only: [:create, :update, :destroy]
       resource :favorites, only: [:create, :destroy]
     end
-    
+
     resources :boards, except: [:edit, :update, :destroy] do
       resources :board_comments, only: [:create, :destroy]
     end
   end
-  
+
   get 'search' => 'searches#search', as: 'search'
   get 'rank' => 'ranks#rank', as: 'rank'
 end

@@ -7,7 +7,7 @@ class Admin::MembersController < ApplicationController
   end
 
   def index
-    @members = Member.all.page(params[:page])
+    @members =  Member.where.not(email: "guest@example.com").page(params[:page])
   end
 
   def edit
