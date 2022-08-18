@@ -1,6 +1,6 @@
 class Admin::MembersController < ApplicationController
   before_action :authenticate_admin!
-  before_action :ensure_member, only: [:show, :edit, :update, :destroy]
+  before_action :ensure_member, only: [:show, :edit, :update]
 
   def show
     @new_posts = @member.posts.last(4)
@@ -21,13 +21,6 @@ class Admin::MembersController < ApplicationController
     end
   end
 
-  def destroy
-    if @member.destroy
-      redirect_to admin_members_path, notice: "会員が正常に削除されました"
-    else
-      redirect_to request.referer
-    end
-  end
 
   private
 

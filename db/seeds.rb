@@ -65,31 +65,39 @@ Member.create!(
   ]
 )
 
-Genre.create!(
+record_timestamps = { updated_at: Time.current, created_at: Time.current } 
+
+Genre.insert_all(
   [
     {
       name: "趣味探し中",
-      body:"今は趣味を探している最中だという人。"
+      body:"今は趣味を探している最中だという人。",
+      **record_timestamps
     },
     {
       name: "趣味を疑似体験したい",
-      body:"ほかの人の投稿を通して趣味を疑似体験したい人。"
+      body:"ほかの人の投稿を通して趣味を疑似体験したい人。",
+      **record_timestamps
     },
     {
       name: "能動的な趣味",
-      body:"自ら行動したりする趣味です。スポーツ・旅行などが含まれます。"
+      body:"自ら行動したりする趣味です。スポーツ・旅行などが含まれます。",
+      **record_timestamps
     },
     {
       name: "創作的な趣味",
-      body:"何かを作ったりする趣味です。DIY・料理・バンドなどが含まれます。"
+      body:"何かを作ったりする趣味です。DIY・料理・バンドなどが含まれます。",
+      **record_timestamps
     },
     {
       name: "受動的な趣味",
-      body:"ほかの人が作ったものを楽しむ趣味です。音楽鑑賞・読書などが含まれます。"
+      body:"ほかの人が作ったものを楽しむ趣味です。音楽鑑賞・読書などが含まれます。",
+      **record_timestamps
     },
     {
       name: "その他",
-      body:"自分の趣味がどの分類に該当するかわからない人。"
+      body:"自分の趣味がどの分類に該当するかわからない人。",
+      **record_timestamps
     }
   ]
  )
@@ -192,7 +200,7 @@ for i in 1..10 do
     password: "123456",
     profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/hobby-#{i-1}.png")),filename: "hobby-#{i-1}.png")
   )
-  member.save
+  member.save!
 end
 
 Member.all.each do |member|
@@ -202,14 +210,14 @@ Member.all.each do |member|
     comment: "デモ#{member.nickname}"
   )
 end
-    
+
 for i in 1..10
   post_comment = PostComment.new(
     admin_id: 1,
     post_id: rand(1..8),
     comment: "デモ" * i
     )
-  post_comment.save
+  post_comment.save!
 end
 
 Member.all.each do |member|
@@ -226,7 +234,7 @@ for i in 1..10
     board_id: rand(1..2),
     comment: "デモ" * i
     )
-  board_comment.save
+  board_comment.save!
 end
 
 for i in 1..4
@@ -234,7 +242,7 @@ for i in 1..4
     follower_id: i,
     followed_id: i + 1
     )
-  relationship.save
+  relationship.save!
 end
 
 for i in 1..8
@@ -243,7 +251,7 @@ for i in 1..8
       member_id: j,
       post_id: i
       )
-    favorite.save
+    favorite.save!
   end
 end
 
@@ -256,7 +264,7 @@ for i in 1..30 do
       body: "テスト" * i,
       image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/hobby-#{j}.png")),filename: "hobby-#{j}.png")
       )
-    post.save
+    post.save!
   end
 end
 
@@ -266,7 +274,7 @@ for i in 1..5 do
     title: "test#{i}",
     body: "テストの掲示板の概要です。" * i
     )
-  board.save
+  board.save!
 end
 
 

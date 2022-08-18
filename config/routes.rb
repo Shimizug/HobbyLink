@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get 'top' => 'homes#top', as: 'top'
-    resources :members, only: [:index, :show, :edit, :update, :destroy] do
+    resources :members, only: [:index, :show, :edit, :update] do
       get 'admin/favorites' => 'favorites#index', as: 'favorites'
       get 'followings' => 'relationships#followings', as: 'followings'
       get 'followers' => 'relationships#followers', as: 'followers'
