@@ -38,7 +38,7 @@ class DeviseCreateMembers < ActiveRecord::Migration[6.1]
       t.boolean :is_deleted, default: false, null: false
       t.integer :hobby_state, default: 0, null: false
       t.string :nickname, null: false
-      t.text :introduction, default: "よろしくお願いします!", null: false
+      t.text :introduction
 
 
 

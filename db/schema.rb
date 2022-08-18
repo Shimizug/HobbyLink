@@ -96,7 +96,7 @@ ActiveRecord::Schema.define(version: 2022_08_03_125514) do
     t.boolean "is_deleted", default: false, null: false
     t.integer "hobby_state", default: 0, null: false
     t.string "nickname", null: false
-    t.text "introduction", default: "よろしくお願いします!", null: false
+    t.text "introduction"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_members_on_email", unique: true
