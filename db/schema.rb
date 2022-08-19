@@ -123,9 +123,9 @@ ActiveRecord::Schema.define(version: 2022_08_03_125514) do
 
   create_table "relationships", force: :cascade do |t|
     t.integer "follower_id", null: false
+    t.integer "followed_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "followed_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

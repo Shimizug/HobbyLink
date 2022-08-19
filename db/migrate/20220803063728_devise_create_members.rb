@@ -6,6 +6,7 @@ class DeviseCreateMembers < ActiveRecord::Migration[6.1]
       ## Database authenticatable
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
+    
 
       ## Recoverable
       t.string   :reset_password_token
@@ -39,8 +40,6 @@ class DeviseCreateMembers < ActiveRecord::Migration[6.1]
       t.integer :hobby_state, default: 0, null: false
       t.string :nickname, null: false
       t.text :introduction
-
-
 
       t.timestamps null: false
     end
