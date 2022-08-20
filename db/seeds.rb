@@ -312,6 +312,19 @@ Post.create!(
   ]
 )
 
+for i in 1..30 do
+  for j in 0..9 do
+    post = Post.new(
+      member_id: rand(1..5),
+      genre_id: rand(1..6),
+      title: "test#{i}",
+      body: "テスト" * i,
+      image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/hobby-#{j}.png")),filename: "hobby-#{j}.png")
+      )
+    post.save!
+  end
+end
+
 Board.insert_all(
   [
     {
@@ -328,6 +341,16 @@ Board.insert_all(
     }
   ]
 )
+
+for i in 1..5 do
+  board = Board.new(
+    member_id: i,
+    title: "test#{i}",
+    body: "テストの掲示板の概要です。" * i
+    )
+  board.save!
+end
+
 
 
 Member.all.each do |member|
@@ -382,27 +405,6 @@ for i in 1..8
   end
 end
 
-for i in 1..30 do
-  for j in 0..9 do
-    post = Post.new(
-      member_id: rand(1..5),
-      genre_id: rand(1..6),
-      title: "test#{i}",
-      body: "テスト" * i,
-      image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/hobby-#{j}.png")),filename: "hobby-#{j}.png")
-      )
-    post.save!
-  end
-end
-
-for i in 1..5 do
-  board = Board.new(
-    member_id: i,
-    title: "test#{i}",
-    body: "テストの掲示板の概要です。" * i
-    )
-  board.save!
-end
 
 
 

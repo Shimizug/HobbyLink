@@ -6,7 +6,7 @@
     <div class="col-12 col-lg-6">
       <ul class="list-inline">
         <li class="list-inline-item"><%= link_to "投稿者:#{@post.member.nickname}", admin_member_path(@post.member.id) %></li>
-        <li class="list-inline-item"><%= "投稿者：#{@post.genre.name}" %></li>
+        <li class="list-inline-item"><%= "趣味ジャンル：#{@post.genre.name}" %></li>
         <li class="list-inline-item"><%= "投稿日：#{@post.created_at.strftime('%Y/%m/%d')}" %></li>
         <div class="text-warning d-inline">
           <i class="fas fa-star" aria-hidden="true"></i>

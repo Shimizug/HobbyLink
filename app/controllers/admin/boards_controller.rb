@@ -8,7 +8,7 @@ class Admin::BoardsController < ApplicationController
   end
 
   def index
-    @boards = Board.all.page(params[:page])
+    @boards = Board.all.page(params[:page]).per(6)
   end
 
 
