@@ -37,9 +37,9 @@ class SearchesController < ApplicationController
       end
     elsif model == 'post'
       if method == 'forward'
-        Post.where('titke LIKE ?', content + '%')
+        Post.where('title LIKE ?', content + '%')
       elsif method == 'backward'
-        Post.where('titke LIKE ?', '%' + content)
+        Post.where('title LIKE ?', '%' + content)
       elsif method == 'perfect'
         Post.where(title: content)
       else # partial
@@ -47,9 +47,9 @@ class SearchesController < ApplicationController
       end
     elsif model == 'board'
       if method == 'forward'
-        Board.where('titke LIKE ?', content + '%')
+        Board.where('title LIKE ?', content + '%')
       elsif method == 'backward'
-        Board.where('titke LIKE ?', '%' + content)
+        Board.where('title LIKE ?', '%' + content)
       elsif method == 'perfect'
         Board.where(title: content)
       else # partial
