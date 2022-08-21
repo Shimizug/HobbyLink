@@ -19,7 +19,7 @@
         <td><%= post.created_at.strftime('%Y/%m/%d') %></td>
         <td>
           <% if current_member.id == post.member.id || current_member.email ==  "guest@example.com" %>
-            <span class="text-warning" ><i class="fas fa-star" aria-hidden="true"></i><%= "#{@post.favorites.count} いいね" %></span>
+            <span class="text-warning" ><i class="fas fa-star" aria-hidden="true"></i><%= "#{post.favorites.count} いいね" %></span>
           <% else %>
             <%= render "public/favorites/btn", post: post %>
           <% end %>
