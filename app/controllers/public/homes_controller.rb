@@ -5,7 +5,6 @@ class Public::HomesController < ApplicationController
     @new_posts = Post.all.last(4)
     #ランダムでいすれかの投稿を取得する
     # @random_posts = Post.order("RANDOM()").limit(4)
-    
     # mysqlでの実行時
     @random_posts = Post.order("RAND()").limit(4)
   end
@@ -15,7 +14,6 @@ class Public::HomesController < ApplicationController
     @new_posts = Post.all.last(4)
     #ランダムでいすれかの投稿を取得する
     # @random_posts = Post.order("RANDOM()").limit(4)
-    
      # mysqlでの実行時
     @random_posts = Post.order("RAND()").limit(4)
   end

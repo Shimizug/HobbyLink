@@ -4,7 +4,7 @@ class Public::MembersController < ApplicationController
 
   def show
     @member = Member.find(params[:id])
-    @new_posts = @member.posts.last(5)
+    @new_posts = @member.posts.last(4)
   end
 
   def index

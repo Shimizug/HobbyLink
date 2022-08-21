@@ -12,11 +12,11 @@
         <% end %>
         <li class="list-inline-item"><%= "趣味ジャンル：#{@post.genre.name}" %></li>
         <li class="list-inline-item"><%= "投稿日：#{@post.created_at.strftime('%Y/%m/%d')}" %></li>
-        <% if current_member.id == @post.member.id %>
-        <div class="text-warning d-inline">
+        <% if current_member.id == @post.member.id || current_member.email ==  "guest@example.com" %>
+        <li class="text-warninglist-inline-item">
           <i class="fas fa-star" aria-hidden="true"></i>
           <%= "#{@post.favorites.count} いいね" %>
-        </div>
+        </li>
         <% else %>
           <li class="list-inline-item"><%= render "public/favorites/btn", post: @post %></li>
         <% end %>

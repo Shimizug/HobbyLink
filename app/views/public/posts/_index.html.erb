@@ -18,8 +18,8 @@
         <td><%= post.genre.name.truncate(10) %></td>
         <td><%= post.created_at.strftime('%Y/%m/%d') %></td>
         <td>
-          <% if post.member.id == current_member.id %>
-            <%= link_to '編集画面へ',  edit_post_path(post.id), class: "btn btn-secondary"  %>
+          <% if current_member.id == post.member.id || current_member.email ==  "guest@example.com" %>
+            <span class="text-warning" ><i class="fas fa-star" aria-hidden="true"></i><%= "#{@post.favorites.count} いいね" %></span>
           <% else %>
             <%= render "public/favorites/btn", post: post %>
           <% end %>
@@ -32,4 +32,5 @@
     <% end %>
   </tbody>
 </table>
+
 
