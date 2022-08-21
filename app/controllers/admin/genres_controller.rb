@@ -3,7 +3,7 @@ class Admin::GenresController < ApplicationController
   before_action :ensure_genre, only: [:edit, :update]
   
   def index
-    @genres = Genre.all
+    @genres = Genre.all.page(params[:page]).per(8)
     @genre = Genre.new
   end
 

@@ -67,7 +67,7 @@
 					<td><%= f.radio_button :is_deleted, true, class: "form-check-input" %><%= f.label :is_deleted, "退会済み", class: "form-check-label" %></td>
 				</tr>
         <tr>
-				  <td colspan="3"><%= f.submit "編集内容を保存する", class: "btn btn-success" %></td>
+				  <td colspan="3"><%= f.submit "編集内容を保存する", method: :delete, data: { confirm: '本当に変更しますか？' }, class: "btn btn-success" %></td>
 				</tr>
           </tbody>
         </table>

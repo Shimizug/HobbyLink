@@ -3,7 +3,7 @@ class Admin::MembersController < ApplicationController
   before_action :ensure_member, only: [:show, :edit, :update]
 
   def show
-    @new_posts = @member.posts.last(4)
+    @new_posts = @member.posts.last(5)
   end
 
   def index
