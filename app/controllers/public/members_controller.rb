@@ -21,11 +21,11 @@ class Public::MembersController < ApplicationController
       redirect_to request.referer
     end
   end
-  
+
   #退会画面の表示
   def unsubscribe
   end
-  
+
   #退会の操作
   def withdraw
     @member.update(is_deleted: true)
@@ -34,6 +34,10 @@ class Public::MembersController < ApplicationController
     redirect_to root_path
   end
 
+  def member_posts
+    @member = Member.find(params[:id])
+    @member_posts = @member.posts.page(params[:page])
+  end
 
   private
 

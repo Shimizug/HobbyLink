@@ -44,6 +44,10 @@
     		</th>
       </tr>
       <tr>
+        <th>会員の投稿数</th>
+        <th><%= link_to @member.posts.count, admin_member_posts_path(@member) %></th>
+      </tr>
+      <tr>
         <th>フォロー一覧</th>
         <th><%= link_to @member.followings.count, admin_member_followings_path(@member) %></th>
       </tr>

@@ -1,6 +1,6 @@
 class Admin::MembersController < ApplicationController
   before_action :authenticate_admin!
-  before_action :ensure_member, only: [:show, :edit, :update]
+  before_action :ensure_member, only: [:show, :edit, :update, :member_posts]
 
   def show
     @new_posts = @member.posts.last(4)
@@ -20,6 +20,12 @@ class Admin::MembersController < ApplicationController
       redirect_to request.referer
     end
   end
+  
+  def member_posts
+    @posts = @member.posts.page(params[:page])
+  end
+  
+    
 
 
   private

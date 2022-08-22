@@ -7,6 +7,9 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get 'top' => 'homes#top', as: 'top'
+
+    get 'member_posts/:id' => 'members#member_posts', as: 'member_posts'
+
     resources :members, only: [:index, :show, :edit, :update] do
       get 'admin/favorites' => 'favorites#index', as: 'favorites'
       get 'followings' => 'relationships#followings', as: 'followings'
@@ -35,6 +38,8 @@ Rails.application.routes.draw do
   scope module: :public do
     root 'homes#top'
     get 'about' => 'homes#about', as: 'about'
+
+    get 'member_posts/:id' => 'members#member_posts', as: 'member_posts'
 
     get 'members/information/:id/edit' => 'members#edit', as: 'edit_information'
     patch 'members/information/:id' => 'members#update', as: 'update_information'

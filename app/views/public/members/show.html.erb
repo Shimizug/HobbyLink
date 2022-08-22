@@ -42,6 +42,10 @@
       	  <th><%= @member.hobby_state_i18n %></th>
         </tr>
         <tr>
+          <th>会員の投稿数</th>
+          <th><%= link_to @member.posts.count, member_posts_path(@member) %></th>
+        </tr>
+        <tr>
           <th>フォロー一覧</th>
           <th><%= link_to @member.followings.count, member_followings_path(@member) %></th>
         </tr>

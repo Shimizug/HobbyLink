@@ -1,0 +1,9 @@
+<div class='container'>
+  <div class="row">
+    <h2><%= "#{@member.nickname}さんの投稿一覧" %></h2>
+    <%= render 'admin/posts/index',posts: @posts %>
+    <div class="offset-5 mb-5">
+      <%= paginate @posts %>
+    </div>
+  </div>
+</div>
