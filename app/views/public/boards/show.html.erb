@@ -19,7 +19,7 @@
         <tr>
           <th class="text-wrap col-10">コメント文</th>
           <th class="text-nowrap col-1">コメント者</th>
-          <th class="text-nowrap col-1">投稿日</th>
+          <th class="text-nowrap col-1">コメント日</th>
           <th></th>
         </tr>
       </thead>
@@ -29,7 +29,7 @@
           <td class="text-wrap col-10 text-left", style="word-break: break-all"><%= board_comment.comment %></td>
           <td class="text-nowrap col-1">
             <% if board_comment.member_id != nil %>
-              <%= board_comment.member.nickname %>
+              <%= board_comment.member.nickname.truncate(10) %>
             <% else %>
               <span class="text-danger">管理人</span>
             <% end %>

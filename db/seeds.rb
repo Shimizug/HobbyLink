@@ -53,7 +53,7 @@ Member.create!(
       hobby_state: 2,
       introduction: '読書が好きです。',
       is_deleted: true,
-      email: 'deactivated@.com',
+      email: 'deactivated@com',
       password: '123456',
       **record_timestamps
     },
@@ -209,16 +209,6 @@ Member.create!(
 
 Genre.insert_all(
   [
-    {
-      name: "趣味探し中",
-      body: "今は趣味を探している最中だという人。",
-      **record_timestamps
-    },
-    {
-      name: "趣味を疑似体験したい",
-      body: "ほかの人の投稿を通して趣味を疑似体験したい人。",
-      **record_timestamps
-    },
     {
       name: "能動的な趣味",
       body:"自ら行動したりする趣味です。スポーツ・旅行などが含まれます。",

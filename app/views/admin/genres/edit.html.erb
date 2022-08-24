@@ -3,23 +3,25 @@
     <h2>ジャンル編集</h2>
   </div>
   <div class="row">
-    <%= form_with model: @genre, url: admin_genre_path(@genre.id), method: :patch do |f| %>
-    <table class="table table-bordered text-center">
-      <thead>
-        <tr class="form-group">
-          <th><%= f.label :name, "ジャンル名" %></th>
-          <th><%= f.text_field :name, class: 'form-control' %></th>
-        </tr>
-        <tr class="form-group">
-          <th><%= f.label :body, "ジャンル概要" %></th>
-          <th><%= f.text_area :body, class: 'form-control form-control' %></th>
-        </tr>
-        <tr class="form-group">
-          <th colspan="2"><%= f.submit class: 'btn btn-success' %></th>
-        </tr>
-      </thead>
-    </table>
-    <% end %>
+    <div class="offset-lg-2 col-lg-8">
+      <%= form_with model: @genre, url: admin_genre_path(@genre.id), method: :patch do |f| %>
+      <table class="table table-bordered text-center">
+        <thead>
+          <tr class="form-group">
+            <th><%= f.label :name, "ジャンル名" %></th>
+            <th><%= f.text_field :name, class: 'form-control' %></th>
+          </tr>
+          <tr class="form-group">
+            <th><%= f.label :body, "ジャンル概要" %></th>
+            <th><%= f.text_area :body, class: 'form-control form-control' %></th>
+          </tr>
+          <tr class="form-group">
+            <th colspan="2"><%= f.submit "編集内容を保存する", class: "btn btn-success" %></th>
+          </tr>
+        </thead>
+      </table>
+      <% end %>
+    </div>
  </div>
 </div>
 

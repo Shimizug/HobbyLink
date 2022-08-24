@@ -26,7 +26,7 @@ class Member < ApplicationRecord
   validates :last_name_kana, presence: true, format: { with: /\A[ァ-ヶー－]+\z/ }
   validates :first_name_kana, presence: true, format: { with: /\A[ァ-ヶー－]+\z/ }
   validates :nickname, presence: true
-  validates :introduction, length: { maximum: 40 } 
+  validates :introduction, length: { maximum: 40 }
 
   enum hobby_state: { finding_hobby: 0, pseudo_trial: 1, has_hobby: 2 }
 
@@ -66,10 +66,10 @@ class Member < ApplicationRecord
 
 
   def full_name
-    first_name + " " + last_name
+    first_name + "　" + last_name
   end
 
   def full_name_kana
-    first_name_kana + " " + last_name_kana
+    first_name_kana + "　" + last_name_kana
   end
 end

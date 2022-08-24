@@ -10,12 +10,16 @@
         <th><%= image_tag @member.get_profile_image, size:"60x60" %></th>
       </tr>
       <tr>
-    	  <th>会員名</th>
+    	  <th>会員氏名</th>
     	  <th><%= @member.full_name %></th>
       </tr>
       <tr>
-    	  <th>会員名（カナ）</th>
+    	  <th>会員氏名（カナ）</th>
     	  <th><%= @member.full_name_kana %></th>
+      </tr>
+      <tr>
+    	  <th>メールアドレス</th>
+    	  <th><%= @member.email %></th>
       </tr>
       <tr>
     	  <th>会員ニックネーム</th>
@@ -24,10 +28,6 @@
       <tr>
     	  <th>自己紹介文</th>
     	  <th><%= @member.introduction %></th>
-      </tr>
-      <tr>
-    	  <th>メールアドレス</th>
-    	  <th><%= @member.email %></th>
       </tr>
       <tr>
     	  <th>趣味ステータス</th>

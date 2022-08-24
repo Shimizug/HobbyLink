@@ -5,7 +5,6 @@
       <th>概要</th>
       <th>作成者</th>
       <th>作成日時</th>
-      <th>最終更新日時</th>
       <th colspan="1"></th>
       </tr>
   </thead>
@@ -20,7 +19,6 @@
           <td><%= board.member.nickname.truncate(10) %></td>
         <% end %>
         <td><%= board.created_at.strftime('%Y/%m/%d') %></td>
-        <td><%= board.updated_at.strftime('%Y/%m/%d') %></td>
         <td><%= link_to "掲示板へ", board_path(board.id), class: "btn btn-primary" %></td>
       </tr>
     <% end %>

@@ -17,14 +17,18 @@
         </tr>
         <% if current_member.id == @member.id %>
           <tr>
-        	  <th>会員名</th>
+        	  <th>会員氏名</th>
         	  <th><%= @member.full_name %></th>
           </tr>
           <tr>
-        	  <th>会員名（カナ）</th>
+        	  <th>会員氏名（カナ）</th>
         	  <th><%= @member.full_name_kana %></th>
           </tr>
         <% end %>
+        <tr>
+      	  <th>メールアドレス</th>
+      	  <th><%= @member.email %></th>
+        </tr>
         <tr>
       	  <th>会員ニックネーム</th>
       	  <th><%= @member.nickname%></th>
@@ -32,10 +36,6 @@
         <tr>
       	  <th>自己紹介文</th>
       	  <th><%= @member.introduction %></th>
-        </tr>
-        <tr>
-      	  <th>メールアドレス</th>
-      	  <th><%= @member.email %></th>
         </tr>
         <tr>
       	  <th>趣味ステータス</th>
