@@ -15,7 +15,7 @@
         <td><%= board.body.truncate(30) %></td>
         <td><%= link_to board.member.nickname.truncate(10), admin_member_path(board.member.id) %></td>
         <td><%= board.created_at.strftime('%Y/%m/%d') %></td>
-        <td><%= link_to "掲示板へ", admin_board_path(board.id), class: "btn btn-primary" %></td>
+        <td><%= link_to "掲示板へ", admin_board_path(board.id), class: "btn btn-info" %></td>
       </tr>
     <% end %>
   </tbody>

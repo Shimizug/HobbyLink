@@ -19,7 +19,7 @@
           <td><%= board.member.nickname.truncate(10) %></td>
         <% end %>
         <td><%= board.created_at.strftime('%Y/%m/%d') %></td>
-        <td><%= link_to "掲示板へ", board_path(board.id), class: "btn btn-primary" %></td>
+        <td><%= link_to "掲示板へ", board_path(board.id), class: "btn btn-info" %></td>
       </tr>
     <% end %>
   </tbody>
