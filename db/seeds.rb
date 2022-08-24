@@ -236,7 +236,7 @@ Post.create!(
   [
     {
       member_id: 2,
-      genre_id: 3,
+      genre_id: 1,
       title: "サッカー",
       body: "今週の週末はサッカーをしました。",
       image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/hobby-1.png")),filename: 'hobby-1.png'),
@@ -244,7 +244,7 @@ Post.create!(
     },
     {
       member_id: 2,
-      genre_id: 4,
+      genre_id: 2,
       title: "料理",
       body: "今日の昼食はオムライス。",
       image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/hobby-2.png")),filename: 'hobby-2.png'),
@@ -252,7 +252,7 @@ Post.create!(
     },
     {
       member_id: 2,
-      genre_id: 5,
+      genre_id: 3,
       title: "ゲーム",
       body: "新作ゲーム攻略中。",
       image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/hobby-3.png")),filename: 'hobby-3.png'),
@@ -260,7 +260,7 @@ Post.create!(
     },
     {
       member_id: 4,
-      genre_id: 5,
+      genre_id: 3,
       title: "Music",
       body: "音楽鑑賞♪",
       image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/hobby-4.png")),filename: 'hobby-4.png'),
@@ -268,7 +268,7 @@ Post.create!(
     },
     {
       member_id: 4,
-      genre_id: 3,
+      genre_id: 1,
       title: "キャンプ",
       body: "家族でキャンプ♪",
       image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/hobby-5.png")),filename: 'hobby-5.png'),
@@ -276,7 +276,7 @@ Post.create!(
     },
     {
       member_id: 5,
-      genre_id: 3,
+      genre_id: 1,
       title: "近所をランニング",
       body: "今日は、一日近所を走っていました。",
       image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/hobby-6.png")),filename: 'hobby-6.png'),
@@ -284,7 +284,7 @@ Post.create!(
     },
     {
       member_id: 5,
-      genre_id: 4,
+      genre_id: 2,
       title: "お絵描き",
       body: "今日は人物画に挑戦！！輪郭が難しい",
       image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/hobby-7.png")),filename: 'hobby-7.png'),
@@ -292,7 +292,7 @@ Post.create!(
     },
     {
       member_id: 5,
-      genre_id: 5,
+      genre_id: 3,
       title: "読書",
       body: "今日は積んでた本を消化しました。",
       image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/hobby-8.png")),filename: 'hobby-8.png'),
@@ -306,7 +306,7 @@ for i in 1..30 do
   for j in 0..9 do
     post = Post.new(
       member_id: rand(1..5),
-      genre_id: rand(1..6),
+      genre_id: rand(1..3),
       title: "test#{i}",
       body: "テスト" * i,
       image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/hobby-#{j}.png")),filename: "hobby-#{j}.png")
@@ -340,7 +340,6 @@ for i in 1..5 do
     )
   board.save!
 end
-
 
 
 Member.all.each do |member|
