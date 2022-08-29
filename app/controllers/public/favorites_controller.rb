@@ -3,7 +3,7 @@ class Public::FavoritesController < ApplicationController
 
   def index
     member = Member.find(params[:member_id])
-    @favorites = member.favirites.page(params[:page])
+    @favorites = member.favorites.page(params[:page])
   end
 
   def create
