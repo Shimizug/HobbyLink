@@ -2,8 +2,8 @@ class Public::FavoritesController < ApplicationController
   before_action :authenticate_member!
 
   def index
-    @member = Member.find(params[:member_id])
-    @favorites = Favorite.where(member_id: @member.id)
+    member = Member.find(params[:member_id])
+    @favorites = member.favirites.page(params[:page])
   end
 
   def create
@@ -20,3 +20,4 @@ class Public::FavoritesController < ApplicationController
     redirect_to request.referer
   end
 end
+ 
