@@ -25,8 +25,6 @@ class Admin::MembersController < ApplicationController
     @posts = @member.posts.page(params[:page])
   end
   
-    
-
 
   private
 
