@@ -1,7 +1,7 @@
 <div class="container">
   <h2>フォロワー一覧</h2>
   <% if @members.exists? %>
-    <%= render 'h5ublic/members/index', members: @members %>
+    <%= render 'public/members/index', members: @members %>
   <% else %>
     <h5>ユーザーはいません</h5>
   <% end %>
