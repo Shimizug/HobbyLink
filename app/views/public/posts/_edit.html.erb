@@ -10,16 +10,15 @@
           <td><%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name), class: "form-control" %></td>
         </tr>
         <tr>
-          <td><%= f.label :title, "タイトル", class: "form-label" %></td>
+          <td><%= f.label :title, "投稿タイトル", class: "form-label" %></td>
           <td><%= f.text_field :title, :placeholder =>  "1文字以上、30文字以下で入力してください。", class: "form-control" %></td>
         </tr>
         <tr>
-          <td><%= f.label :body, "本文", class: "form-label" %></td>
+          <td><%= f.label :body, "投稿本文", class: "form-label" %></td>
           <td><%= f.text_area :body, :placeholder =>  "1文字以上、100文字以下で入力してください。", class: "form-control" %></td>
         </tr>
         <tr>
-          <td></td>
-          <td><%= f.submit "変更を保存", class: "btn btn-success" %></td>
+          <td colspan="2"><%= f.submit "変更を保存する", class: "btn btn-success" %></td>
         </tr>
       </tbody>
     </table>
