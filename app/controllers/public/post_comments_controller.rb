@@ -6,10 +6,6 @@ class Public::PostCommentsController < ApplicationController
     comment = current_member.post_comments.new(post_comment_params)
     comment.post_id = post.id
     comment.save
-    tags = Vision.get_image_data(post.image)
-    tags.each do |tag|
-      post.tags.create(name: tag)
-    end
     redirect_to request.referer
   end
 
