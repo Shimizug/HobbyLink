@@ -27,6 +27,10 @@
           <th><%= image_tag @post.get_image, size:"100x100" %></th>
         </tr>
         <tr>
+          <th>タグ</th>
+          <th><%= @post.tag %></th>
+        </tr>
+        <tr>
           <th>趣味ジャンル</th>
           <th><%= @post.genre.name %></th>
         </tr>
