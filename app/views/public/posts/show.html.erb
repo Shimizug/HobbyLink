@@ -27,8 +27,12 @@
           <th><%= image_tag @post.get_image, size:"100x100" %></th>
         </tr>
         <tr>
-          <th>タグ</th>
-          <th><%= @post.tag %></th>
+          <th>投稿画像タグ</th>
+          <th>
+            <% @post.tags.each do |tag| %>
+              <span class="label bg-info rounded-pill"><%= tag.name %></span>
+            <% end %>
+          </th>
         </tr>
         <tr>
           <th>趣味ジャンル</th>

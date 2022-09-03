@@ -3,6 +3,7 @@ class Post < ApplicationRecord
   belongs_to :genre
   has_many :post_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  has_many :tags, dependent: :destroy
   
   validates :title,presence:true,length: { in: 1..30 } 
   validates :body,presence:true,length: { in: 1..100 } 
