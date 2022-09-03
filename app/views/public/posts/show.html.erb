@@ -30,7 +30,9 @@
           <th>投稿画像タグ</th>
           <th>
             <% @post.tags.each do |tag| %>
-              <span class="label bg-info rounded-pill"><%= tag.name %></span>
+              <span class='bg-info rounded-pill p-1 m-1'>
+                <%= link_to tag.name, admin_tag_path(tag), class: "text-light" %>
+              </span>
             <% end %>
           </th>
         </tr>

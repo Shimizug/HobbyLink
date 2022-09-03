@@ -9,6 +9,9 @@ Rails.application.routes.draw do
     get 'top' => 'homes#top', as: 'top'
 
     get 'member_posts/:id' => 'members#member_posts', as: 'member_posts'
+    
+    get 'tags/index' => 'tags#index', as: 'tags'
+    get 'tags/search/:id' => 'tags#search', as: 'tag'
 
     resources :members, only: [:index, :show, :edit, :update] do
       get 'admin/favorites' => 'favorites#index', as: 'favorites'
@@ -46,6 +49,9 @@ Rails.application.routes.draw do
     get 'members/unsubscribe/:id' => 'members#unsubscribe', as: 'confirm_unsubscribe'
     put 'members/information/:id' => 'members#update'
     patch 'members/withdraw/:id' => 'members#withdraw', as: 'withdraw'
+    
+    get 'tags/index' => 'tags#index', as: 'tags'
+    get 'tags/search/:id' => 'tags#search', as: 'tag'
 
     resources :members, only: [:index, :show] do
       resource :relationships, only: [:create, :destroy]

@@ -1,0 +1,9 @@
+<div class="container">
+  <h2>タグ一覧</h2>
+  <% @tags.each do |tag| %>
+  <span class='bg-info rounded-pill p-1 m-1'>
+    <%= link_to tag.name, tag_path(tag), class: "text-light" %>
+  </span> 
+  <% end %>
+</div>
+

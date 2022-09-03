@@ -26,6 +26,7 @@
                 <li class="nav-item"><%= link_to '投稿一覧',  admin_posts_path, class: "nav-link text-light" %></li>
                 <li class="nav-item"><%= link_to '掲示板一覧',  admin_boards_path, class: "nav-link text-light" %></li>
                 <li class="nav-item"><%= link_to 'ジャンル一覧',  admin_genres_path, class: "nav-link text-light" %></li>
+                <li class="nav-item"><%= link_to 'タグ一覧', admin_tags_path, class: "nav-link text-light" %></li>
                 <li class="nav-item"><%= link_to 'ランキング', rank_path, class: "nav-link text-light" %></li>
                 <li class="nav-item"><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: "nav-link text-light" %></li>
               <% elsif member_signed_in? %>
@@ -33,6 +34,7 @@
                 <li class="nav-item"><%= link_to '会員一覧', members_path, class: "nav-link text-light" %></li>
                 <li class="nav-item"><%= link_to '投稿一覧', posts_path, class: "nav-link text-light" %></li>
                 <li class="nav-item"><%= link_to '掲示板一覧',  boards_path, class: "nav-link text-light" %></li>
+                <li class="nav-item"><%= link_to 'タグ一覧', tags_path, class: "nav-link text-light" %></li>
                 <li class="nav-item"><%= link_to 'ランキング', rank_path, class: "nav-link text-light" %></li>
                 <% unless current_member.email == "guest@example.com" %>
                   <li class="nav-item"><%= link_to '新規投稿', new_post_path, class: "nav-link text-light" %></li>
