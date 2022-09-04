@@ -11,7 +11,7 @@ class Public::PostsController < ApplicationController
   def index
     @posts = Post.all.page(params[:page])
   end
-  
+
   def new
     @post = Post.new
     @genres = Genre.all
@@ -21,11 +21,12 @@ class Public::PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.member_id = current_member.id
     if @post.save
-      tags = Vision.get_image_data(@post.image)
-      tags.each do |tag|
-        @post.tags.create(name: tag)
+      if @post.image.attached?
+        tags = Vision.get_image_data(@post.image)
+        tags.each do |tag|
+          @post.tags.create(name: tag)
+        end
       end
-      
       redirect_to post_path(@post), notice: "投稿が正常に作成されました。"
     else
       redirect_to request.referer
@@ -38,6 +39,13 @@ class Public::PostsController < ApplicationController
 
   def update
     if @post.update(post_params)
+      if @post.image.attached?
+        @post.tags.destroy_all
+        tags = Vision.get_image_data(@post.image)
+        tags.each do |tag|
+          @post.tags.create(name: tag)
+        end
+      end
       redirect_to post_path(@post), notice: "投稿が正常に更新されました。"
     else
       redirect_to request.referer
