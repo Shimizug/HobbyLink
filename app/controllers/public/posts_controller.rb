@@ -23,9 +23,7 @@ class Public::PostsController < ApplicationController
     if @post.save
       if @post.image.attached?
         tags = Vision.get_image_data(@post.image)
-        tags.each do |tag|
-          @post.tags.create(name: tag)
-        end
+        @post.save_tags(tags)
       end
       redirect_to post_path(@post), notice: "投稿が正常に作成されました。"
     else
@@ -42,9 +40,7 @@ class Public::PostsController < ApplicationController
       if @post.image.attached?
         @post.tags.destroy_all
         tags = Vision.get_image_data(@post.image)
-        tags.each do |tag|
-          @post.tags.create(name: tag)
-        end
+        @post.save_tags(tags)
       end
       redirect_to post_path(@post), notice: "投稿が正常に更新されました。"
     else
