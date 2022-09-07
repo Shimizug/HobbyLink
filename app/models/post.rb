@@ -22,15 +22,14 @@ class Post < ApplicationRecord
   end
 
   def save_tags(tags)
-    # 自分自身に関連づいたタグを取得する
+    # 自分自身に関連づいたタグを配列で取得する
     current_tags = self.tags.pluck(:name)
     # (1) 元々自分に紐付いていたタグと投稿されたタグの差分を抽出
-    #   -- 記事更新時に削除されたタグ
+    # すでに作成されていたタグを抽出
     old_tags = current_tags - tags
     # (2) 投稿されたタグと元々自分に紐付いていたタグの差分を抽出
     #   -- 新規に追加されたタグ
     new_tags = tags - current_tags
-
     # tag_mapsテーブルから、(1)のタグを削除
     #   tagsテーブルから該当のタグを探し出して削除する
     old_tags.each do |old|

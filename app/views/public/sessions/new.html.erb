@@ -2,10 +2,6 @@
   <div class="row">
     <div class="col">
       <h2>ログイン</h2>
-      <% if flash[:danger] %>
-        <p class="text-red"><%= flash[:danger] %></p>
-      <% end %>
-
        <%= form_with model: @member, url: session_path(resource_name), local: true do |f| %>
         <table class="table member_info member_form">
           <thead>

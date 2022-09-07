@@ -1,5 +1,6 @@
 <div class='container'>
   <h2>新規投稿</h2>
+
   <div class='row'>
     <div class="col-4">
       <h4>ジャンル一覧</h4>
@@ -7,7 +8,39 @@
     </div>
     <div class="col-8">
       <h4>新規投稿欄</h4>
-      <%= render 'new', post: @post %>
+      <%= form_with model: @post, local: true do |f| %>
+        <% if @post.errors.any? %>
+          <%= @post.errors.count %>件のエラーが発生しました
+          <ul>
+            <% @post.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        <% end %>
+        <table class="table table-bordered text-center">
+          <tbody>
+            <tr>
+              <td><%= f.label :image, "投稿画像" %></td>
+              <td><%= f.file_field :image, :placeholder =>  "投稿画像", accept: "image/*" %></td>
+            </tr>
+            <tr>
+              <td><%= f.label :genre_id, "ジャンル分類", class: "form-label" %></td>
+              <td><%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name), class: "form-control" %></td>
+            </tr>
+            <tr>
+              <td><%= f.label :title, "投稿投稿タイトル", class: "form-label" %></td>
+              <td><%= f.text_field :title, :placeholder =>  "1文字以上、30文字以下で入力してください。", class: "form-control" %></td>
+            </tr>
+            <tr>
+              <td><%= f.label :body, "投稿本文", class: "form-label" %></td>
+              <td><%= f.text_area :body, :placeholder =>  "1文字以上、100文字以下で入力してください。", class: "form-control" %></td>
+            </tr>
+            <tr>
+              <td colspan="2"><%= f.submit "新規登録", class: "btn btn-success" %></td>
+            </tr>
+          </tbody>
+        </table>
+        <% end %>
     </div>
   </div>
 </div>
