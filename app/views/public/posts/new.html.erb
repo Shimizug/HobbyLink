@@ -9,14 +9,7 @@
     <div class="col-8">
       <h4>新規投稿欄</h4>
       <%= form_with model: @post, local: true do |f| %>
-        <% if @post.errors.any? %>
-          <%= @post.errors.count %>件のエラーが発生しました
-          <ul>
-            <% @post.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
-            <% end %>
-          </ul>
-        <% end %>
+        <%= render 'error' , cause: @post %>
         <table class="table table-bordered text-center">
           <tbody>
             <tr>
