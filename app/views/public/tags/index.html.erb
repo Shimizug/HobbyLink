@@ -2,10 +2,8 @@
   <h2>タグ一覧</h2>
   <% @tags.each do |tag| %>
   <span class='bg-info rounded-pill p-1 m-1'>
-    <!--タグ名の重複を防ぐ-->
-    <% tag = Tag.find_by(name: tag.name) %>
     <%= link_to tag.name, tag_path(tag), class: "text-light" %>
-  </span> 
+  </span>
   <% end %>
 </div>
 
