@@ -8,8 +8,8 @@
     </div>
     <div class="col-8">
       <h4>新規投稿欄</h4>
+      <%= render 'error' , cause: @post %>
       <%= form_with model: @post, local: true do |f| %>
-        <%= render 'error' , cause: @post %>
         <table class="table table-bordered text-center">
           <tbody>
             <tr>

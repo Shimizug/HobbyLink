@@ -27,7 +27,6 @@ class Public::PostsController < ApplicationController
       end
       redirect_to post_path(@post), notice: "投稿が正常に作成されました。"
     else
-      @post = Post.new
       @genres = Genre.all
       render :new
     end
