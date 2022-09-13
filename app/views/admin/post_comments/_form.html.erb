@@ -1,8 +1,8 @@
-<%= form_with model:[post, post_comment], url: admin_post_post_comments_path(post.id), local: true do |f| %>
+<%= form_with(model:[post, post_comment], url: admin_post_post_comments_path(post.id), local: false) do |f| %>
   <table class="table table-borderless">
     <tbody>
       <tr>
-        <td><%= f.text_area :comment, :placeholder =>  "1文字以上、100文字以下で入力してください。", class: "form-control" %></td>
+        <td><%= f.text_area :comment, :placeholder =>  "1文字以上、100文字以下で入力してください。", class: "form-control comment-textarea" %></td>
       </tr>
       <tr>
         <td><%= f.submit "送信する", class: "btn btn-success float-right" %></td>

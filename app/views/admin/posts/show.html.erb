@@ -13,7 +13,7 @@
             <%= "#{@post.favorites.count} いいね" %>
           </div>
         </li>
-        <li class="list-inline-item"><%= "コメント数：#{@post.post_comments.count}" %></li>
+        <li class="list-inline-item">コメント数：<span class="post-comments-counter"><%= @post.post_comments.count %></span></li>
      </ul>
       <table class="table table-bordered text-center">
         <tr>
@@ -51,8 +51,10 @@
     <div class="col-12 col-lg-6">
       <div class="ml-3">
         <h3>コメント一覧</h3>
-      <%= render "admin/post_comments/index", post: @post, post_comments: @post_comments %>
-      <div class="d-flex justify-content-center"><%= paginate @post_comments %></div>
+        <div class="post-comments-index">
+          <%= render partial: "admin/post_comments/index", locals: {post: @post, post_comments: @post_comments} %>
+        </div>
+      <div class="d-flex justify-content-center comment-paginate"><%= paginate @post_comments, params: {controller: 'posts', action: 'show', id: @post.id} %></div>
       <%= render "admin/post_comments/form", post: @post, post_comment: @post_comment %>
     </div>
   </div>

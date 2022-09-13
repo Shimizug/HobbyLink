@@ -1,0 +1,3 @@
+$('.post-comments-counter').html("<%= j(@post.post_comments.count) %>")
+$('.post-comments-index').html("<%= j(render partial: "admin/post_comments/index", locals: {post: @post, post_comments: @post_comments}) %>")
+$('.comment-paginate').html("<%= j(paginate @post_comments, params: {controller: 'posts', action: 'show', id: @post.id}) %>")
