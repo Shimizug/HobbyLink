@@ -3,7 +3,7 @@
     <h2><%= "#{@member.nickname}さんのお気に入り一覧" %></h2>
   </div>
   <div class="row">
-   <%= render "public/posts/index", posts: @posts %>
+    <%= render "public/posts/index", posts: @posts %>
   </div>
   <div class="offset-5 mb-5">
     <%= paginate @posts %>

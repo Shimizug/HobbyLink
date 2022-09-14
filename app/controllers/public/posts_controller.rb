@@ -15,6 +15,7 @@ class Public::PostsController < ApplicationController
   
   #投稿一覧をジャンルで絞り込む
   def genre_posts
+    @genres = Genre.all
     @genre = Genre.find(params[:id])
     @posts = @genre.posts.page(params[:page])
   end

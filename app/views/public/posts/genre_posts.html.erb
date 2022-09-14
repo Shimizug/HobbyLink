@@ -1,5 +1,12 @@
 <div class="container">
   <h2><%= "#{@genre.name}の投稿一覧" %></h2>
+  <div class="row">
+    <% @genres.each do |genre| %>
+      <span class='bg-info rounded-pill p-1 m-1'>
+        <%= link_to genre.name, genre_posts_path(genre.id), class: "text-light" %>
+      </span>
+    <% end %>
+  </div>
   <%= render 'public/posts/index', posts: @posts %>
   <div class="offset-5 mb-5">
     <%= paginate @posts %>
