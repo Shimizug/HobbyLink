@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     get 'top' => 'homes#top', as: 'top'
 
     get 'member_posts/:id' => 'members#member_posts', as: 'member_posts'
+    get 'genre_posts/:id' => 'posts#genre_posts', as: "genre_posts"
     
     get 'tags/index' => 'tags#index', as: 'tags'
     get 'tags/search/:id' => 'tags#search', as: 'tag'
@@ -43,6 +44,7 @@ Rails.application.routes.draw do
     get 'about' => 'homes#about', as: 'about'
 
     get 'member_posts/:id' => 'members#member_posts', as: 'member_posts'
+    get 'genre_posts/:id' => 'posts#genre_posts', as: "genre_posts"
 
     get 'members/information/:id/edit' => 'members#edit', as: 'edit_information'
     patch 'members/information/:id' => 'members#update', as: 'update_information'

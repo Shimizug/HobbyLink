@@ -1,10 +1,16 @@
 <div class='container'>
   <div class="row">
     <h2>投稿一覧</h2>
+  </div>
+  <div class="row">
+    <% @genres.each do |genre| %>
+      <span class='bg-info rounded-pill p-1 m-1'>
+        <%= link_to genre.name, admin_genre_posts_path(genre.id), class: "text-light" %>
+      </span>
+    <% end %>
     <%= render 'admin/posts/index',posts: @posts %>
     <div class="offset-5 mb-5">
       <%= paginate @posts %>
     </div>
   </div>
 </div>
-

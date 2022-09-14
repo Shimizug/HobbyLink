@@ -9,6 +9,13 @@ class Admin::PostsController < ApplicationController
 
   def index
     @posts = Post.all.page(params[:page])
+    @genres = Genre.all
+  end
+  
+  #投稿一覧をジャンルで絞り込む
+  def genre_posts
+    @genre = Genre.find(params[:id])
+    @posts = @genre.posts.page(params[:page])
   end
 
   def destroy
