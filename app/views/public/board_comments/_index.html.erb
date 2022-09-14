@@ -1,0 +1,28 @@
+<table class="table table-sm table-borderless table-striped text-center", style="border-collapse: separate; border-spacing: 0px 10px;">
+  <thead class="table-secondary">
+    <tr>
+      <th class="text-wrap col-10">コメント文</th>
+      <th class="text-nowrap col-1">コメント者</th>
+      <th class="text-nowrap col-1">コメント日</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @board_comments.each do |board_comment| %>
+    <tr>
+      <td class="text-wrap col-10 text-left", style="word-break: break-all"><%= board_comment.comment %></td>
+      <td class="text-nowrap col-1">
+        <% if board_comment.member_id != nil %>
+          <%= board_comment.member.nickname.truncate(10) %>
+        <% else %>
+          <span class="text-danger">管理人</span>
+        <% end %>
+      </td>
+      <td class="text-nowrap col-1"><%= board_comment.created_at.strftime('%Y/%m/%d') %></td>
+      <% if current_member == board_comment.member %>
+        <td> <%= link_to "削除", board_board_comment_path(@board, board_comment), method: :delete, class: "btn btn-danger btn-sm text-nowrap", remote: true %></td>
+      <% end %>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

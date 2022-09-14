@@ -1,0 +1,2 @@
+$('.board-comments-index').html("<%= j(render partial: "public/board_comments/index", locals: {board: @board, board_comments: @board_comments}) %>")
+$('.comment-paginate').html("<%= j(paginate @board_comments, params: {controller: 'boards', action: 'show', id: @board.id}) %>")

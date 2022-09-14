@@ -7,14 +7,12 @@ class Public::PostCommentsController < ApplicationController
     comment.post_id = @post.id
     comment.save
     @post_comments = @post.post_comments.page(params[:page])
-    # redirect_to request.referer
   end
 
   def destroy
     PostComment.find_by(id: params[:id], post_id: params[:post_id]).destroy
     @post = Post.find(params[:post_id])
     @post_comments = @post.post_comments.page(params[:page])
-    # redirect_to request.referer
   end
 
   private
