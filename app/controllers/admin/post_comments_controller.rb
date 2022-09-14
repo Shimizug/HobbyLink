@@ -6,13 +6,13 @@ class Admin::PostCommentsController < ApplicationController
     comment = current_admin.post_comments.new(post_comment_params)
     comment.post_id = @post.id
     comment.save
-    @post_comments = @post.post_comments.page(params[:page])
+    @post_comments = @post.post_comments.page(params[:page]).per(10)
   end
 
   def destroy
     PostComment.find_by(id: params[:id], post_id: params[:post_id]).destroy
     @post = Post.find(params[:post_id])
-    @post_comments = @post.post_comments.page(params[:page])
+    @post_comments = @post.post_comments.page(params[:page]).per(10)
   end
 
   private

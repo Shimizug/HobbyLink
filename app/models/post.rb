@@ -41,7 +41,6 @@ class Post < ApplicationRecord
     # tagsテーブルから(2)のタグを探して、tag_mapsテーブルにtag_idを追加する
     new_tags.each do |new|
       # 条件のレコードを初めの1件を取得し1件もなければ作成する
-      # find_or_create_by : https://railsdoc.com/page/find_or_create_by
       new_post_tag = Tag.find_or_create_by(name: new)
 
       # tag_mapsテーブルにpost_idとtag_idを保存

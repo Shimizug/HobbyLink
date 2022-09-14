@@ -1,34 +1,12 @@
 <div class="container">
   <div class="row">
-    <h2>お気に入り一覧</h2>
+    <h2><%= "#{@member.nickname}さんのお気に入り一覧" %></h2>
   </div>
   <div class="row">
-    <table class="table table-bordered text-center">
-      <thead class="table-secondary">
-        <tr>
-          <th>投稿画像</th>
-          <th>会員名</th>
-          <th>タイトル</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @favorites.each do |favorite| %>
-          <tr>
-            <td>
-              <%= link_to post_path(favorite.post.id) do %>
-               <%= image_tag favorite.post.get_image, size:"40x40" %>
-              <% end %>
-            </td>
-            <% if favorite.member.is_deleted == false %>
-              <td><%= link_to favorite.member.nickname.truncate(10), member_path(favorite.member.id) %></td>
-            <% else %>
-              <td><%= favorite.member.nickname.truncate(10) %></td>
-            <% end %>
-            <td><%= favorite.post.title.truncate(10) %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+   <%= render "public/posts/index", posts: @posts %>
+  </div>
+  <div class="offset-5 mb-5">
+    <%= paginate @posts %>
   </div>
 </div>
 

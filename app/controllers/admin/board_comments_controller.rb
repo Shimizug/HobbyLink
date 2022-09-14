@@ -6,13 +6,13 @@ class Admin::BoardCommentsController < ApplicationController
     comment = current_admin.board_comments.new(board_comment_params)
     comment.board_id = @board.id
     comment.save
-    @board_comments = @board.board_comments.page(params[:page])
+    @board_comments = @board.board_comments.page(params[:page]).per(10)
   end
 
   def destroy
     BoardComment.find_by(id: params[:id], board_id: params[:board_id]).destroy
-    @board = board.find(params[:board_id])
-    @board_comments = @board.board_comments.page(params[:page])
+    @board = Board.find(params[:board_id])
+    @board_comments = @board.board_comments.page(params[:page]).per(10)
   end
 
   private
