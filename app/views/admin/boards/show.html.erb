@@ -18,41 +18,12 @@
       </thead>
     </table>
   </div>
-  <div class="row">
-    <table class="table table-sm table-borderless table-striped text-center", style="border-collapse: separate; border-spacing: 0px 10px;">
-      <thead class="table-secondary">
-        <tr>
-          <th class="text-wrap col-10">コメント文</th>
-          <th class="text-nowrap col-1">コメント者</th>
-          <th class="text-nowrap col-1">コメント日</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-      <% @board_comments.each do |board_comment| %>
-        <tr class="my-3">
-          <td class="text-wrap col-10 text-left", style="word-break: break-all"><%= board_comment.comment %></td>
-          <td class="text-nowrap col-1">
-            <% if board_comment.member_id != nil %>
-              <%= board_comment.member.nickname.truncate(10) %>
-            <% else %>
-              <span class="text-danger">管理人</span>
-            <% end %>
-          </td>
-          <td class="text-nowrap col-1"><%= board_comment.created_at.strftime('%Y/%m/%d') %></td>
-          <% if board_comment.member_id != nil %>
-            <td><%= link_to "削除", admin_board_board_comment_path(@board, board_comment), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-danger btn-sm text-nowrap" %></td>
-          <% else %>
-            <td> <%= link_to "削除", admin_board_board_comment_path(@board, board_comment), method: :delete, class: "btn btn-danger btn-sm text-nowrap" %></td>
-          <% end %>
-        </tr>
-      <% end %>
-      </tbody>
-    </table>
-</div>
-<div class="offset-5 mb-5">
-  <%= paginate @board_comments %>
-</div>
+  <div class="row board-comments-index">
+    <%= render partial: "admin/board_comments/index", locals: {board: @board, board_comments: @board_comments} %>
+  </div>
+  <div class="offset-5 mb-5 comment-paginate">
+    <%= paginate @board_comments, params: {controller: 'boards', action: 'show', id: @board.id} %>
+  </div>
 <div class="row">
     <div class="col-10 offset-1">
       <%= render "admin/board_comments/form", board: @board, board_comment: @board_comment %>

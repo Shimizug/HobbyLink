@@ -9,7 +9,7 @@
   </thead>
   <tbody>
   <% board_comments.each do |board_comment| %>
-    <tr>
+    <tr class="my-3">
       <td class="text-wrap col-10 text-left", style="word-break: break-all"><%= board_comment.comment %></td>
       <td class="text-nowrap col-1">
         <% if board_comment.member_id != nil %>
@@ -19,8 +19,10 @@
         <% end %>
       </td>
       <td class="text-nowrap col-1"><%= board_comment.created_at.strftime('%Y/%m/%d') %></td>
-      <% if current_member == board_comment.member %>
-        <td> <%= link_to "削除", board_board_comment_path(board, board_comment), method: :delete, class: "btn btn-danger btn-sm text-nowrap", remote: true %></td>
+      <% if board_comment.member_id != nil %>
+        <td><%= link_to "削除", admin_board_board_comment_path(board, board_comment), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-danger btn-sm text-nowrap", remote: true %></td>
+      <% else %>
+        <td> <%= link_to "削除", admin_board_board_comment_path(board, board_comment), method: :delete, class: "btn btn-danger btn-sm text-nowrap", remote: true %></td>
       <% end %>
     </tr>
   <% end %>

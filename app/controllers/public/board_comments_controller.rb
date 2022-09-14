@@ -7,14 +7,12 @@ class Public::BoardCommentsController < ApplicationController
     comment.board_id = @board.id
     comment.save
     @board_comments = @board.board_comments.page(params[:page])
-    # redirect_to request.referer
   end
 
   def destroy
     BoardComment.find_by(id: params[:id], board_id: params[:board_id]).destroy
     @board = board.find(params[:board_id])
     @board_comments = @board.board_comments.page(params[:page])
-    # redirect_to request.referer
   end
 
   private

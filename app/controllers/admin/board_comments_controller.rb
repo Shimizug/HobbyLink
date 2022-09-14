@@ -2,16 +2,17 @@ class Admin::BoardCommentsController < ApplicationController
   before_action :authenticate_admin!
   
   def create
-    board = Board.find(params[:board_id])
+    @board = Board.find(params[:board_id])
     comment = current_admin.board_comments.new(board_comment_params)
-    comment.board_id = board.id
+    comment.board_id = @board.id
     comment.save
-    redirect_to request.referer
+    @board_comments = @board.board_comments.page(params[:page])
   end
 
   def destroy
     BoardComment.find_by(id: params[:id], board_id: params[:board_id]).destroy
-    redirect_to request.referer
+    @board = board.find(params[:board_id])
+    @board_comments = @board.board_comments.page(params[:page])
   end
 
   private
